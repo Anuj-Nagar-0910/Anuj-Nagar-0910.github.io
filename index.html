@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuj Nagar - AI Prompt Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earthy Blues and Greys with a hint of Gold -->
+    <!-- Application Structure Plan: A single-page, top-down interactive portfolio with a navigation bar for smooth scrolling. The structure is thematic (Journey, Skills, Projects) rather than a rigid CV format. This design tells a compelling career transition story, guiding the recruiter through the candidate's evolution from Tester to AI Engineer. Key interactions include a skills chart and project detail modals to encourage exploration and reveal information on demand, making the experience more engaging than a static document. -->
+    <!-- Visualization & Content Choices: 1. Skills: Goal: Compare and organize skills. Method: A Chart.js horizontal bar chart to show self-assessed proficiency. Interaction: The chart visually represents the skill levels from the CV. Justification: A chart is more scannable and visually appealing than a list. Library: Chart.js. 2. Career Journey: Goal: Show career progression. Method: A structured HTML/CSS vertical timeline. Interaction: Visually guides the user through the career path. Justification: Clearly illustrates the career path and highlights transferable skills at each stage. Library/Method: HTML/CSS with Tailwind. 3. Projects: Goal: Organize and detail projects. Method: Interactive cards with a modal popup. Interaction: Clicking a button opens a modal with project details. Justification: Keeps the main UI clean while allowing users to drill down. Library/Method: Vanilla JS for modal logic. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #FDFDFD; color: #333333; }
+        .nav-link { transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #4A7C9B; } /* Primary accent blue */
+        .chart-container { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 400px; max-height: 50vh; }
+        @media (min-width: 768px) { .chart-container { height: 500px; } }
+        .project-card { transition: transform 0.3s, box-shadow 0.3s; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .modal-backdrop { transition: opacity 0.3s; }
+        .modal-content { transition: transform 0.3s, opacity 0.3s; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">[Your Name]</div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#summary" class="nav-link text-gray-600 font-medium hover:text-sky-700">Summary</a>
+                <a href="#journey" class="nav-link text-gray-600 font-medium hover:text-sky-700">Journey</a>
+                <a href="#skills" class="nav-link text-gray-600 font-medium hover:text-sky-700">Skills</a>
+                <a href="#projects" class="nav-link text-gray-600 font-medium hover:text-sky-700">Projects</a>
+            </div>
+            <a href="mailto:youremail@example.com" class="hidden md:inline-block bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">Contact Me</a>
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+                <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+                <span class="block w-6 h-0.5 bg-gray-700"></span>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#summary" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Summary</a>
+            <a href="#journey" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Journey</a>
+            <a href="#skills" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Skills</a>
+            <a href="#projects" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Projects</a>
+            <a href="mailto:youremail@example.com" class="block mt-2 text-center bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">Contact Me</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="summary" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">AI Prompt Engineer</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                A highly motivated professional transitioning from Software Architecture and Automotive Testing into AI. I specialize in crafting top-notch prompts and leveraging tools like LangChain, Ollama, and Qdrant to build innovative AI solutions.
+            </p>
+            <div class="flex space-x-4">
+                <a href="#projects" class="bg-sky-700 text-white font-medium py-3 px-6 rounded-lg hover:bg-sky-800 transition-colors">View My Work</a>
+                <a href="[Your LinkedIn Profile URL]" target="_blank" class="bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="journey" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">My Career Journey</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">From ensuring software quality to architecting systems, my path has equipped me with a unique analytical perspective for AI.</p>
+            </div>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute left-1/2 w-0.5 h-full bg-emerald-300 transform -translate-x-1/2"></div>
+                <div class="relative mb-12">
+                    <div class="absolute w-4 h-4 bg-sky-700 rounded-full mt-1.5 left-1/2 transform -translate-x-1/2 border-2 border-white"></div>
+                    <div class="ml-[calc(50%+2rem)] md:ml-[calc(50%+3rem)] pl-8">
+                        <h3 class="text-xl font-bold text-gray-800">Software Architect</h3>
+                        <p class="text-sm text-gray-500">March, 2025 – Present</p>
+                        <p class="mt-2 text-gray-600">Led architectural design for EPS, focusing on scalability and performance. This role honed my ability to understand complex systems and data flows, a crucial skill for designing sophisticated AI and prompt interaction models.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute w-4 h-4 bg-sky-700 rounded-full mt-1.5 left-1/2 transform -translate-x-1/2 border-2 border-white"></div>
+                    <div class="mr-[calc(50%+2rem)] md:mr-[calc(50%+3rem)] pr-8 text-right">
+                        <h3 class="text-xl font-bold text-gray-800">Automotive Tester</h3>
+                        <p class="text-sm text-gray-500">March, 2021 – [End Date]</p>
+                        <p class="mt-2 text-gray-600">Performed rigorous System and Software Integration testing and Automating them. This experience built a strong foundation in analytical problem-solving and attention to detail, essential for refining and debugging AI prompts for optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 md:py-24 bg-white rounded-2xl shadow-sm">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Skills & Technology Toolkit</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">I utilize a modern stack to develop, orchestrate, and deploy AI-driven applications. This chart represents my confidence and experience level with key technologies.</p>
+            </div>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </section>
+
+        <section id="projects" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Project Showcase</h2>
+                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Here are some of the projects where I've applied my prompt engineering and AI integration skills. Click to learn more.</p>
+            </div>
+            <div id="project-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h3 class="text-2xl font-bold mb-2">Let's Connect</h3>
+            <p class="mb-4">I'm passionate about learning and collaborating on new AI challenges.</p>
+            <a href="mailto:anuj456nagar@gmail.com" class="text-emerald-400 hover:text-emerald-300 transition-colors text-lg">Anuj Nagar</a>
+            <div class="mt-6 flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/anuj-n-478690143/" target="_blank" class="hover:text-emerald-300 transition-colors">LinkedIn</a>
+                <a href="https://github.com/yourusername/anuj.github.io" target="_blank" class="hover:text-emerald-300 transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4 opacity-0 pointer-events-none modal-backdrop">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 modal-content">
+            <div class="sticky top-0 bg-white p-6 border-b border-gray-200 flex justify-between items-center">
+                <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
+                <button id="modal-close" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            <div class="p-6">
+                <p id="modal-description" class="text-gray-600 mb-6"></p>
+                <div class="mb-6">
+                    <h4 class="font-bold text-gray-700 mb-2">Technologies Used:</h4>
+                    <div id="modal-tech" class="flex flex-wrap gap-2"></div>
+                </div>
+                <a id="modal-link" href="#" target="_blank" class="inline-block bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsData = {
+                labels: ['Prompt Engineering', 'LangChain', 'Ollama', 'Qdrant', 'N8n', 'Docker', 'System Architecture', 'Integration Testing'],
+                datasets: [{
+                    label: 'Confidence / Experience Level',
+                    data: [90, 85, 80, 75, 85, 70, 95, 90],
+                    backgroundColor: 'rgba(74, 124, 155, 0.7)', /* Muted blue with transparency */
+                    borderColor: 'rgba(74, 124, 155, 1)', /* Muted blue */
+                    borderWidth: 1,
+                    indexAxis: 'y',
+                }]
+            };
+
+            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(skillsChartCtx, {
+                type: 'bar',
+                data: skillsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.x !== null) { label += context.parsed.x + '%'; }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { callback: value => value + "%" },
+                            grid: { color: '#e0e0e0' } /* Light grid lines */
+                        },
+                        y: {
+                            ticks: { font: { size: 14 } },
+                            grid: { color: '#e0e0e0' } /* Light grid lines */
+                        }
+                    }
+                }
+            });
+
+            const projects = [
+                {
+                    title: 'LLM-Powered Data Extraction Pipeline',
+                    description: 'Developed an automated pipeline using LangChain and Ollama to extract structured data from unstructured daily usage logs, leveraging custom-engineered prompts for high accuracy. Integrated with Qdrant for efficient semantic search and retrieval of relevant information.',
+                    technologies: ['LangChain', 'Ollama', 'Qdrant', 'Prompt Engineering', 'Python', 'Docker'],
+                    link: '#'
+                },
+                {
+                    title: 'N8n Workflow for Content Generation',
+                    description: 'Designed and implemented N8n workflows to automate the generation of marketing copy and summaries from raw data. The core of this project was fine-tuning prompts to ensure brand consistency, specific tones, and accurate output.',
+                    technologies: ['N8n', 'Prompt Engineering', 'LLM Integration', 'Automation'],
+                    link: '#'
+                },
+                {
+                    title: 'Dockerized Prompt Engineering Environment',
+                    description: 'Created a reproducible and scalable Dockerized environment for developing, testing, and deploying prompt engineering experiments. This setup streamlines the development lifecycle and ensures consistency across different machines.',
+                    technologies: ['Docker', 'Python', 'Bash', 'AI Development'],
+                    link: '#'
+                }
+            ];
+
+            const projectList = document.getElementById('project-list');
+            projects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card bg-white p-6 rounded-lg shadow-sm border border-emerald-200 flex flex-col'; /* Secondary accent border */
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">${project.title}</h3>
+                    <p class="text-gray-600 flex-grow">${project.description.substring(0, 100)}...</p>
+                    <div class="mt-4">
+                        <button data-index="${index}" class="project-button font-medium text-sky-700 hover:text-sky-800 transition-colors">Learn More &rarr;</button>
+                    </div>
+                `;
+                projectList.appendChild(card);
+            });
+
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalTech = document.getElementById('modal-tech');
+            const modalLink = document.getElementById('modal-link');
+            const modalClose = document.getElementById('modal-close');
+
+            projectList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('project-button')) {
+                    const projectIndex = e.target.getAttribute('data-index');
+                    const project = projects[projectIndex];
+                    
+                    modalTitle.textContent = project.title;
+                    modalDescription.textContent = project.description;
+                    modalLink.href = project.link;
+                    
+                    modalTech.innerHTML = '';
+                    project.technologies.forEach(tech => {
+                        const techTag = document.createElement('span');
+                        techTag.className = 'bg-emerald-100 text-emerald-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded'; /* Secondary accent tag */
+                        techTag.textContent = tech;
+                        modalTech.appendChild(techTag);
+                    });
+                    
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+                }
+            });
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
