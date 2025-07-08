@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JingleGen AI Strategy Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Playful Harmony -->
+    <!-- Application Structure Plan: A single-page, vertical scroll layout with a sticky top navigation bar was chosen for its intuitive user flow. It allows the user to progress through the business strategy logically, from market opportunity to execution. This structure breaks down the dense report into thematic, digestible sections: 1. **Market Opportunity:** High-level introduction. 2. **Jingle Market Insights:** Interactive exploration of popular content. 3. **The Science of Engagement:** Visual and interactive learning about child psychology. 4. **Tech Toolkit:** A dynamic comparison tool for APIs. 5. **Brand & Strategy:** Actionable insights for branding and execution. This design prioritizes exploration and synthesis over the linear format of the source report, making complex information accessible and engaging. -->
+    <!-- Visualization & Content Choices:
+        - **Jingle Market Insights:** Report Table 1 -> Goal: Compare/Organize -> Viz: Interactive Card Grid with filters. Interaction: Users can filter jingles by language to compare regional trends. Justification: More dynamic and user-directed than a static table. Method: HTML/CSS/JS.
+        - **Attention Span:** Report Data -> Goal: Compare -> Viz: Bar Chart. Interaction: Visual comparison of attention spans. Justification: Chart.js provides a clear, quantitative visualization of a key developmental constraint. Library: Chart.js.
+        - **Color & Sound Psychology:** Report Text -> Goal: Inform -> Viz: Interactive icon/color grids. Interaction: Users click on elements to reveal descriptive text. Justification: Transforms dense paragraphs into a quick, interactive learning experience. Method: HTML/CSS/JS.
+        - **API Comparisons:** Report Tables 2-4 -> Goal: Compare -> Viz: Tabbed interactive card grids. Interaction: Users can switch between TTS, Music, and Video APIs and click on cards for detailed info. Justification: Organizes a large amount of technical data into a clean, comparable, and user-friendly format. Method: HTML/CSS/JS.
+        - **Automation Workflow:** Report Text -> Goal: Organize -> Viz: HTML/CSS Flowchart. Interaction: Static visual aid. Justification: Clearly illustrates the core technical process described in the report. Method: HTML/CSS.
+        - **Channel Naming:** Report Text -> Goal: Inform/Organize -> Viz: Stylized list. Interaction: Static visual aid. Justification: Presents branding rules in a memorable, easy-to-scan format. Method: HTML/CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8; /* Warm off-white */
+            color: #4A4A4A;
+        }
+        .nav-link {
+            transition: color 0.3s, border-color 0.3s;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #FF6B6B; /* Coral accent */
+            border-bottom-color: #FF6B6B;
+        }
+        .section-title {
+            color: #2D3748;
+        }
+        .section-subtitle {
+            color: #718096;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #FFFFFF;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-filter.active {
+            background-color: #FF6B6B;
+            color: white;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+        }
+        .tab-btn.active {
+            border-color: #FF6B6B;
+            background-color: #FFE5E5;
+            color: #FF6B6B;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 lg:px-6 py-3">
+            <div class="flex flex-wrap justify-between items-center">
+                <a href="#" class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800">JingleGen AI ✨</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#market" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Market</a>
+                    <a href="#science" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Science</a>
+                    <a href="#tech" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Tech Toolkit</a>
+                    <a href="#strategy" class="nav-link text-gray-600 font-medium border-b-2 border-transparent pb-1">Strategy</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="py-16 md:py-24 text-center bg-white">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold section-title mb-4">The Billion-Dollar Opportunity</h1>
+                <p class="text-lg md:text-xl section-subtitle max-w-3xl mx-auto">An interactive dashboard exploring the strategy for an automated jingle creation platform for young children in India.</p>
+            </div>
+        </section>
+
+        <!-- Market Insights Section -->
+        <section id="market" class="py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-4">Jingle Market Insights</h2>
+                <p class="text-center section-subtitle max-w-2xl mx-auto mb-12">The Indian market for children's content is vast and culturally rich. This section provides an overview of the most popular jingles and rhymes that form the foundation of early childhood "edu-tainment." Interact with the filters to explore content trends by language.</p>
+
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+                    <button class="btn-filter active px-4 py-2 rounded-full font-semibold text-sm md:text-base transition bg-gray-200 text-gray-700" data-lang="all">All</button>
+                    <button class="btn-filter px-4 py-2 rounded-full font-semibold text-sm md:text-base transition bg-gray-200 text-gray-700" data-lang="Hindi">Hindi</button>
+                    <button class="btn-filter px-4 py-2 rounded-full font-semibold text-sm md:text-base transition bg-gray-200 text-gray-700" data-lang="Punjabi">Punjabi</button>
+                    <button class="btn-filter px-4 py-2 rounded-full font-semibold text-sm md:text-base transition bg-gray-200 text-gray-700" data-lang="Telugu">Telugu</button>
+                </div>
+
+                <div id="jingle-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                    <!-- Jingle cards will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- The Science of Engagement Section -->
+        <section id="science" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-4">The Science of Engagement</h2>
+                <p class="text-center section-subtitle max-w-2xl mx-auto mb-12">Creating effective content for children aged 0-5 requires a deep understanding of developmental psychology. This section explores the key principles of visual perception, auditory preference, and attention that must guide content creation. Click on the cards to learn more.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Color Psychology -->
+                    <div>
+                        <h3 class="text-2xl font-bold section-title mb-6 text-center">Visuals: Color & Contrast</h3>
+                        <p class="text-center text-gray-600 mb-8">Children are drawn to specific colors and high contrast. A strategic palette can capture attention, influence mood, and aid learning.</p>
+                        <div id="color-psychology" class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                            <!-- Color cards will be populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Auditory Preferences -->
+                    <div>
+                        <h3 class="text-2xl font-bold section-title mb-6 text-center">Audio: Rhythm & Voice</h3>
+                         <p class="text-center text-gray-600 mb-8">Sound is a powerful tool for engagement. Simple, rhythmic music and happy-sounding speech are most effective for young listeners.</p>
+                        <div id="sound-psychology" class="space-y-4">
+                           <!-- Sound cards will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attention Span -->
+                <div class="mt-16 pt-12 border-t">
+                    <h3 class="text-2xl font-bold section-title mb-6 text-center">Attention & Pacing</h3>
+                    <p class="text-center section-subtitle max-w-2xl mx-auto mb-8">Content must be paced appropriately for a child's age. Fast, frenetic videos can be harmful, while deliberately paced content fosters focus and learning. The chart below shows the recommended maximum attention span to guide video length.</p>
+                    <div class="chart-container">
+                        <canvas id="attentionSpanChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tech Toolkit Section -->
+        <section id="tech" class="py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-4">The AI Tech Toolkit</h2>
+                <p class="text-center section-subtitle max-w-2xl mx-auto mb-12">Automating jingle creation requires a stack of powerful AI APIs. The workflow involves converting text to speech, generating music, and creating animation. This section provides an interactive comparison of the top API choices for each step.</p>
+
+                <!-- Workflow -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold section-title mb-6 text-center">Automation Workflow</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                        <div class="bg-white p-4 rounded-lg shadow-md w-48">
+                            <div class="text-4xl">📜</div>
+                            <p class="font-semibold mt-2">Text/Lyrics</p>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-400">→</div>
+                        <div class="bg-white p-4 rounded-lg shadow-md w-48">
+                            <div class="text-4xl">🗣️</div>
+                            <p class="font-semibold mt-2">TTS API</p>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-400">→</div>
+                        <div class="bg-white p-4 rounded-lg shadow-md w-48">
+                            <div class="text-4xl">🎵</div>
+                            <p class="font-semibold mt-2">Music API</p>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-400">→</div>
+                        <div class="bg-white p-4 rounded-lg shadow-md w-48">
+                            <div class="text-4xl">🎬</div>
+                            <p class="font-semibold mt-2">Video API</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Tabs -->
+                <div class="flex justify-center border-b mb-8">
+                    <button class="tab-btn active font-medium py-2 px-6 border-b-2" data-tab="tts">Text-to-Speech</button>
+                    <button class="tab-btn font-medium py-2 px-6 border-b-2 border-transparent" data-tab="music">Music Gen</button>
+                    <button class="tab-btn font-medium py-2 px-6 border-b-2 border-transparent" data-tab="video">Video Gen</button>
+                </div>
+
+                <div id="api-content">
+                    <!-- API content will be populated by JS -->
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Strategy & Branding Section -->
+        <section id="strategy" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center section-title mb-4">Brand & Strategy Blueprint</h2>
+                <p class="text-center section-subtitle max-w-2xl mx-auto mb-12">A strong brand and clear strategy are essential for success. This section outlines key recommendations for naming the YouTube channel and the core content principles for building a billion-dollar business.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Naming Strategy -->
+                    <div>
+                        <h3 class="text-2xl font-bold section-title mb-6 text-center">Phonetically-Friendly Naming</h3>
+                        <p class="text-center text-gray-600 mb-8">Channel names should be easy for young children to pronounce and remember. The most effective names use simple, repetitive sounds that align with early speech development.</p>
+                        <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 space-y-4">
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">👶</span>
+                                <div>
+                                    <h4 class="font-bold">Use Bilabial Sounds</h4>
+                                    <p class="text-gray-600 text-sm">Incorporate sounds like /b/, /p/, /m/ (e.g., BabyBus, Pinkfong).</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">🔄</span>
+                                <div>
+                                    <h4 class="font-bold">Simple Repetition</h4>
+                                    <p class="text-gray-600 text-sm">Use repetitive consonant-vowel syllables (e.g., Cocomelon, ChuChu, LooLoo).</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-2xl mr-4">🧸</span>
+                                <div>
+                                    <h4 class="font-bold">Familiar Words</h4>
+                                    <p class="text-gray-600 text-sm">Use words children recognize (e.g., Little Baby Bum).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Core Strategy -->
+                    <div>
+                        <h3 class="text-2xl font-bold section-title mb-6 text-center">Core Content Strategy</h3>
+                        <p class="text-center text-gray-600 mb-8">Success hinges on a commitment to quality "edu-tainment" that parents trust and children love. These are the foundational pillars of the content strategy.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <span class="text-2xl mr-4">🎯</span>
+                                <span class="font-medium text-gray-700">"Edu-tainment" Sweet Spot: Blend learning with fun.</span>
+                            </li>
+                             <li class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <span class="text-2xl mr-4">🇮🇳</span>
+                                <span class="font-medium text-gray-700">Cultural Relevance: Adapt Indian themes with positive values.</span>
+                            </li>
+                             <li class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <span class="text-2xl mr-4">🐢</span>
+                                <span class="font-medium text-gray-700">Appropriate Pacing: Prioritize comprehension over frenetic speed.</span>
+                            </li>
+                             <li class="flex items-center p-4 bg-gray-50 rounded-lg">
+                                <span class="text-2xl mr-4">❤️</span>
+                                <span class="font-medium text-gray-700">Lovable Characters: Create relatable, animated friends.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center py-6">
+        <p>&copy; 2025 JingleGen AI Strategy. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const jingleData = [
+            { name: 'Kukdoo Koo', lang: 'Hindi', theme: 'Animal Sounds', chars: 'Repetitive, simple narrative' },
+            { name: 'Main Tota Main Tota', lang: 'Hindi', theme: 'Animals, Daily Life', chars: 'Character-focused, simple actions' },
+            { name: 'Aloo Kachaloo Beta', lang: 'Hindi', theme: 'Food, Play', chars: 'Catchy rhythm, simple vocabulary' },
+            { name: 'Namaste', lang: 'Hindi', theme: 'Greetings, Culture', chars: 'Culturally relevant, repetitive' },
+            { name: 'Machli Jal Ki Rani Hai', lang: 'Punjabi', theme: 'Animals, Nature', chars: 'Traditional, rhythmic story' },
+            { name: 'Wheels on the Bus', lang: 'Punjabi', theme: 'Vehicles, Actions', chars: 'Repetitive, action-oriented' },
+            { name: 'Five Little Monkeys', lang: 'Punjabi', theme: 'Numbers, Animals', chars: 'Counting rhyme, repetitive' },
+            { name: 'Baa Baa Black Sheep', lang: 'Punjabi', theme: 'Animals, Nursery Rhyme', chars: 'Classic tune, simple words' },
+            { name: 'Number Song', lang: 'Telugu', theme: 'Numbers, Learning', chars: 'Educational, repetitive concept' },
+            { name: 'Chitti Chilakamma', lang: 'Telugu', theme: 'Animals, Family', chars: 'Traditional, narrative' },
+            { name: 'Enugamma Enugu', lang: 'Telugu', theme: 'Animals (Elephant)', chars: 'Focus on one animal, rhythmic' },
+            { name: 'Koti Mama', lang: 'Telugu', theme: 'Animals (Monkey)', chars: 'Playful, character-driven' },
+        ];
+
+        const colorData = [
+            { name: 'Warm Hues', colors: ['bg-red-400', 'bg-orange-400', 'bg-yellow-400'], text: 'Red, orange, and yellow evoke feelings of excitement, happiness, and energy. Excellent for capturing attention.' },
+            { name: 'Cool Hues', colors: ['bg-blue-400', 'bg-green-400', 'bg-teal-400'], text: 'Blue and green are calming and promote focus and harmony. Ideal for segments requiring concentration.' },
+            { name: 'High Contrast', colors: ['bg-black', 'bg-white', 'bg-yellow-400'], text: 'Strong contrast between colors is essential for developing visual systems and helps hold attention.' },
+            { name: 'Limited Palette', colors: ['bg-sky-400', 'bg-lime-400', 'bg-white'], text: 'Using just 2-3 main colors at a time prevents visual overload and improves clarity for young learners.' },
+        ];
+
+        const soundData = [
+            { icon: '🗣️', name: 'Infant-Directed Speech', text: 'Higher pitch, slower, more rhythmic speech. Infants strongly prefer this happy-sounding "parentese."' },
+            { icon: '🎶', name: 'Simple Melodies', text: 'Songs with 3-5 notes and lots of repetition are easiest for young children to process and remember.' },
+            { icon: '🥁', name: 'Steady Rhythm', text: 'A strong, predictable beat is more engaging than speech and encourages movement, which aids learning.' },
+            { icon: '🤫', name: 'Strategic Sound Effects', text: 'Use sparingly to highlight key actions or moments. Constant SFX can be overwhelming and distracting.' },
+        ];
+
+        const apiData = {
+            tts: [
+                { name: 'Acapela Group', recommendation: 'Primary', feature: 'Authentic child voices', cost: 'Paid per voice', suitable: 'Ideal for genuine child-like narration.' },
+                { name: 'CAMB.AI', recommendation: 'Alternative', feature: 'Advanced voice cloning', cost: 'Enterprise', suitable: 'Potential to create unique, proprietary voices.' },
+                { name: 'Google Cloud TTS', recommendation: 'Backup', feature: 'Large free tier', cost: 'Free then Paid', suitable: 'Good for testing and background voices.' },
+            ],
+            music: [
+                { name: 'ecrett music', recommendation: 'Primary', feature: 'Royalty-free, easy UI', cost: 'Low-cost subscription', suitable: 'Excellent balance of cost, quality, and ease of use.' },
+                { name: 'SOUNDRAW', recommendation: 'Alternative', feature: 'API access, high customization', cost: 'Subscription', suitable: 'Great for businesses needing deep integration.' },
+            ],
+            video: [
+                { name: 'Animaker', recommendation: 'Primary', feature: 'Character builder, automation bot', cost: 'Tiered subscription', suitable: 'Best all-in-one for scalable, kid-friendly animation.' },
+                { name: 'Elai.io', recommendation: 'Supplementary', feature: 'Text-to-video with avatars', cost: 'Free then Paid', suitable: 'Good for simple, educational, avatar-led videos.' },
+                { name: 'DomoAI', recommendation: 'Supplementary', feature: 'Video-to-animation styles', cost: 'Credit-based', suitable: 'Creates charming cartoon aesthetics from video clips.' },
+            ]
+        };
+
+        const jingleGrid = document.getElementById('jingle-grid');
+        const filterButtons = document.querySelectorAll('.btn-filter');
+
+        function populateJingles(filter = 'all') {
+            jingleGrid.innerHTML = '';
+            const filteredData = filter === 'all' ? jingleData : jingleData.filter(j => j.lang === filter);
+
+            filteredData.forEach(jingle => {
+                const card = document.createElement('div');
+                card.className = 'jingle-card card rounded-lg shadow p-5 border border-gray-100';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-bold text-lg text-gray-800">${jingle.name}</h4>
+                        <span class="text-xs font-semibold ${jingle.lang === 'Hindi' ? 'bg-orange-100 text-orange-800' : jingle.lang === 'Punjabi' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'} px-2 py-1 rounded-full">${jingle.lang}</span>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2"><strong>Theme:</strong> ${jingle.theme}</p>
+                    <p class="text-sm text-gray-500 mt-1"><strong>Characteristics:</strong> ${jingle.chars}</p>
+                `;
+                jingleGrid.appendChild(card);
+            });
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                populateJingles(button.dataset.lang);
+            });
+        });
+
+        function populateScience() {
+            const colorContainer = document.getElementById('color-psychology');
+            colorContainer.innerHTML = colorData.map(c => `
+                <div class="cursor-pointer group" onclick="alert('${c.text}')">
+                    <div class="flex justify-center space-x-1 mb-2">
+                        ${c.colors.map(colorClass => `<div class="w-8 h-8 rounded-full ${colorClass} border-2 border-white shadow-sm group-hover:scale-110 transition-transform"></div>`).join('')}
+                    </div>
+                    <p class="font-semibold text-sm text-gray-700 mt-3">${c.name}</p>
+                </div>
+            `).join('');
+
+            const soundContainer = document.getElementById('sound-psychology');
+            soundContainer.innerHTML = soundData.map(s => `
+                <div class="card flex items-center p-4 rounded-lg border border-gray-100 shadow-sm cursor-pointer" onclick="alert('${s.name}: ${s.text}')">
+                    <span class="text-3xl mr-4">${s.icon}</span>
+                    <div>
+                        <h4 class="font-bold text-gray-800">${s.name}</h4>
+                        <p class="text-sm text-gray-500">${s.text}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        const attentionCtx = document.getElementById('attentionSpanChart').getContext('2d');
+        new Chart(attentionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['2-Year-Old', '3-Year-Old', '4-Year-Old', '5-Year-Old'],
+                datasets: [{
+                    label: 'Average Attention Span (Minutes)',
+                    data: [6, 9, 12, 15],
+                    backgroundColor: ['#FFC4C4', '#FF6B6B', '#FF6B6B', '#D63D3D'],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` ~${context.raw} minutes`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Minutes'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        const apiContentContainer = document.getElementById('api-content');
+        const tabButtons = document.querySelectorAll('.tab-btn');
+
+        function populateApis(apiType = 'tts') {
+            apiContentContainer.innerHTML = '';
+            const grid = document.createElement('div');
+            grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+
+            apiData[apiType].forEach(api => {
+                const card = document.createElement('div');
+                card.className = 'card rounded-lg shadow p-5 border border-gray-100 flex flex-col';
+                let recommendationClass = '';
+                switch(api.recommendation) {
+                    case 'Primary': recommendationClass = 'bg-green-100 text-green-800'; break;
+                    case 'Alternative': recommendationClass = 'bg-yellow-100 text-yellow-800'; break;
+                    case 'Supplementary':
+                    case 'Backup': recommendationClass = 'bg-blue-100 text-blue-800'; break;
+                }
+
+                card.innerHTML = `
+                    <div class="flex-grow">
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-bold text-lg text-gray-800">${api.name}</h4>
+                            <span class="text-xs font-semibold px-2 py-1 rounded-full ${recommendationClass}">${api.recommendation}</span>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                           <li class="flex items-center"><span class="font-bold w-16 inline-block">Feature:</span><span>${api.feature}</span></li>
+                           <li class="flex items-center"><span class="font-bold w-16 inline-block">Cost:</span><span>${api.cost}</span></li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gray-200">
+                        <p class="text-sm text-gray-800 font-medium">${api.suitable}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            apiContentContainer.appendChild(grid);
+        }
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                populateApis(button.dataset.tab);
+            });
+        });
+
+        populateJingles();
+        populateScience();
+        populateApis();
+    });
+    </script>
+</body>
+</html>
