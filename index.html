@@ -9,10 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Earthy Blues and Greys with a hint of Gold -->
-    <!-- Application Structure Plan: A single-page, top-down interactive portfolio with a navigation bar for smooth scrolling. The structure is thematic (Journey, Skills, Projects) rather than a rigid CV format. This design tells a compelling career transition story, guiding the recruiter through the candidate's evolution from Tester to AI Engineer. Key interactions include a skills chart and project detail modals to encourage exploration and reveal information on demand, making the experience more engaging than a static document. -->
-    <!-- Visualization & Content Choices: 1. Skills: Goal: Compare and organize skills. Method: A Chart.js horizontal bar chart to show self-assessed proficiency. Interaction: The chart visually represents the skill levels from the CV. Justification: A chart is more scannable and visually appealing than a list. Library: Chart.js. 2. Career Journey: Goal: Show career progression. Method: A structured HTML/CSS vertical timeline. Interaction: Visually guides the user through the career path. Justification: Clearly illustrates the career path and highlights transferable skills at each stage. Library/Method: HTML/CSS with Tailwind. 3. Projects: Goal: Organize and detail projects. Method: Interactive cards with a modal popup. Interaction: Clicking a button opens a modal with project details. Justification: Keeps the main UI clean while allowing users to drill down. Library/Method: Vanilla JS for modal logic. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #FDFDFD; color: #333333; }
         .nav-link { transition: color 0.3s; }
@@ -111,7 +107,7 @@
         </section>
 
     </main>
-    
+
     <footer class="bg-gray-800 text-white">
         <div class="container mx-auto px-6 py-8 text-center">
             <h3 class="text-2xl font-bold mb-2">Let's Connect</h3>
@@ -136,7 +132,7 @@
                     <h4 class="font-bold text-gray-700 mb-2">Technologies Used:</h4>
                     <div id="modal-tech" class="flex flex-wrap gap-2"></div>
                 </div>
-                <a id="modal-link" href="https://github.com/Anuj-Nagar-0910" target="_blank" class="inline-block bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">View on GitHub</a>
+                <a id="modal-link" href="#" target="_blank" class="inline-block bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">View on GitHub</a>
             </div>
         </div>
     </div>
@@ -197,21 +193,37 @@
                     title: 'Prompt Engineering',
                     description: 'A curated collection of prompt designs for AI applications across Code Generation, Creative Writing, Information Extraction, and Summarization. Each prompt is crafted for real-world use, balancing clarity with creativity.',
                     technologies: ['md', 'AI Development' ],
-                    link: 'https://github.com/Anuj-Nagar-0910/awesome-prompts'
+                    link: 'https://github.com/Anuj-Nagar-0910/awesome-prompts',
+                    type: 'modal' // Added type to differentiate
                 },
                 {
                     title: 'LLM-Powered Data Extraction Pipeline',
                     description: 'Developed an automated pipeline using LangChain and Ollama to extract structured data from unstructured daily usage logs, leveraging custom-engineered prompts for high accuracy. Integrated with Qdrant for efficient semantic search and retrieval of relevant information.',
                     technologies: ['LangChain', 'Ollama', 'Qdrant', 'Prompt Engineering', 'Python', 'Docker'],
-                    link: 'https://github.com/Anuj-Nagar-0910/ollama-qdrant-demos'
+                    link: 'https://github.com/Anuj-Nagar-0910/ollama-qdrant-demos',
+                    type: 'modal' // Added type
                 },
                 {
                     title: 'N8n Workflow for Content Generation',
                     description: 'Designed and implemented N8n workflows to automate the generation of marketing copy and summaries from raw data. The core of this project was fine-tuning prompts to ensure brand consistency, specific tones, and accurate output.',
                     technologies: ['N8n', 'Prompt Engineering', 'LLM Integration', 'Automation'],
-                    link: 'https://github.com/Anuj-Nagar-0910/langchain-n8n-pipelines'
+                    link: 'https://github.com/Anuj-Nagar-0910/langchain-n8n-pipelines',
+                    type: 'modal' // Added type
+                },
+                {
+                    title: 'Interactive Medium Research Guide',
+                    description: 'Explore an interactive guide on conducting research for medium articles, focusing on effective information gathering and structuring for compelling content.',
+                    technologies: ['HTML', 'CSS', 'JavaScript'],
+                    link: 'interactive-medium-guide.html', // Link to your new HTML file
+                    type: 'page' // Mark this as a link to a separate page
+                },
+                {
+                    title: 'Jingle Research Guide',
+                    description: 'A comprehensive guide detailing the process of researching and developing effective jingles, from conceptualization to audience targeting.',
+                    technologies: ['HTML', 'CSS', 'JavaScript'],
+                    link: 'jingle-research-guide.html', // Link to your new HTML file
+                    type: 'page' // Mark this as a link to a separate page
                 }
-                
             ];
 
             const projectList = document.getElementById('project-list');
@@ -239,21 +251,27 @@
                 if (e.target.classList.contains('project-button')) {
                     const projectIndex = e.target.getAttribute('data-index');
                     const project = projects[projectIndex];
-                    
-                    modalTitle.textContent = project.title;
-                    modalDescription.textContent = project.description;
-                    modalLink.href = project.link;
-                    
-                    modalTech.innerHTML = '';
-                    project.technologies.forEach(tech => {
-                        const techTag = document.createElement('span');
-                        techTag.className = 'bg-emerald-100 text-emerald-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded'; /* Secondary accent tag */
-                        techTag.textContent = tech;
-                        modalTech.appendChild(techTag);
-                    });
-                    
-                    modal.classList.remove('opacity-0', 'pointer-events-none');
-                    modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+
+                    if (project.type === 'page') {
+                        // If it's a 'page' type, redirect to the linked HTML file
+                        window.location.href = project.link;
+                    } else {
+                        // Otherwise, open the modal as before
+                        modalTitle.textContent = project.title;
+                        modalDescription.textContent = project.description;
+                        modalLink.href = project.link;
+
+                        modalTech.innerHTML = '';
+                        project.technologies.forEach(tech => {
+                            const techTag = document.createElement('span');
+                            techTag.className = 'bg-emerald-100 text-emerald-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded'; /* Secondary accent tag */
+                            techTag.textContent = tech;
+                            modalTech.appendChild(techTag);
+                        });
+
+                        modal.classList.remove('opacity-0', 'pointer-events-none');
+                        modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
+                    }
                 }
             });
 
