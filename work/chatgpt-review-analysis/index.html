@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChatGPT Review Analysis: Sentiment on 193K Reviews | Anuj Nagar</title>
+<meta name="description" content="Sentiment and feature analysis of 193,148 Google Play reviews of the ChatGPT app in Python. Findings, method and the limits of a lexicon-based approach.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/work/chatgpt-review-analysis/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="ChatGPT Review Analysis: Sentiment on 193K Reviews | Anuj Nagar"><meta property="og:description" content="Sentiment and feature analysis of 193,148 Google Play reviews of the ChatGPT app in Python. Findings, method and the limits of a lexicon-based approach."><meta property="og:url" content="https://anuj-nagar-0910.github.io/work/chatgpt-review-analysis/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ChatGPT Review Analysis: Sentiment on 193K Reviews | Anuj Nagar"><meta name="twitter:description" content="Sentiment and feature analysis of 193,148 Google Play reviews of the ChatGPT app in Python. Findings, method and the limits of a lexicon-based approach.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"CreativeWork","@id":"https://anuj-nagar-0910.github.io/work/chatgpt-review-analysis/#work","name":"ChatGPT Review Analysis","url":"https://anuj-nagar-0910.github.io/work/chatgpt-review-analysis/","description":"Sentiment and feature analysis of 193,148 Google Play reviews of the ChatGPT app in Python. Findings, method and the limits of a lexicon-based approach.","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"},"dateModified":"2026-10-26","inLanguage":"en","sameAs":["https://github.com/Anuj-Nagar-0910/Chat-Gpt-Review-Analysis"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"},{"@type":"ListItem","position":2,"name":"Experiments","item":"https://anuj-nagar-0910.github.io/work/"},{"@type":"ListItem","position":3,"name":"ChatGPT Review Analysis","item":"https://anuj-nagar-0910.github.io/work/chatgpt-review-analysis/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="light" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/" aria-current="page">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="/#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="/#contact">Contact</a>
+</div>
+
+<main id="main">
+<section class="sec sec--navy case-hero" data-says="Stars say &lt;mark&gt;how much&lt;/mark&gt;. Text says why." aria-labelledby="h1">
+<div class="wrap">
+<nav class="crumbs mono" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Experiments</a> / 02</nav>
+<p class="eyebrow mono">Experiment 02</p>
+<h1 id="h1">ChatGPT Review Analysis</h1>
+<p class="lede">A star rating shows how much users like an app, not why. The review text holds the why, but nobody can read 197,000 reviews by hand. So I taught Python to read them, and checked where it was wrong.</p>
+<div class="pills" style="margin-top:28px">
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910/Chat-Gpt-Review-Analysis" rel="external" target="_blank">Source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+<dl class="facts"><div><dt class="mono">Period</dt><dd>Built Oct 2026; reviews Jul 2023 to Aug 2024</dd></div><div><dt class="mono">Stack</dt><dd>Python 3.12, pandas, TextBlob, NLTK, seaborn, scikit-learn</dd></div><div><dt class="mono">Data</dt><dd>196,727 raw reviews, 193,148 after cleaning</dd></div><div><dt class="mono">Context</dt><dd>Crio.Do DA-201, session 5</dd></div></dl>
+</div>
+</section>
+<section class="sec sec--paper" aria-label="Case study">
+<div class="wrap">
+<div class="beats">
+<section class="beat" aria-labelledby="b-Q" data-reveal><div class="k"><b aria-hidden="true">Q</b><span class="mono">Question</span></div><div class="c"><h2 id="b-Q">What do users feel about ChatGPT, how strongly, and about what?</h2>
+<ol>
+<li>What is the general <b>sentiment</b>? (polarity: positive, neutral, negative)</li>
+<li>How <b>strong</b> are the opinions? (subjectivity: 0 factual to 1 opinionated)</li>
+<li>Which <b>features</b> do people praise or criticise most?</li>
+</ol>
+<p>The data: Google Play reviews of the ChatGPT Android app, from 25 July 2023 to 23 August 2024.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-M" data-reveal><div class="k"><b aria-hidden="true">M</b><span class="mono">Method</span></div><div class="c"><h2 id="b-M">Clean, score, validate, then look for themes</h2>
+<ul>
+<li><b>Prepare.</b> Standardise column names, drop 6 empty reviews and 3,573 duplicate review IDs. Duplicate <i>text</i> stays: two people who wrote "good" are two votes.</li>
+<li><b>Score.</b> TextBlob polarity and subjectivity. Positive above +0.05, negative below −0.05. Chosen because it returns both numbers, is fast and is explainable.</li>
+<li><b>Validate.</b> Compare sentiment with star ratings, study the mismatches, and check non-English reviews separately.</li>
+<li><b>Mine.</b> Top words and two-word phrases for 4–5★ and 1–2★ reviews, keeping negations so "not working" stays distinct.</li>
+<li><b>Aspects.</b> Share of praise and criticism mentioning errors, login, pricing, accuracy and helpfulness.</li>
+</ul>
+</div></section>
+<section class="beat" aria-labelledby="b-R" data-reveal><div class="k"><b aria-hidden="true">R</b><span class="mono">Result</span></div><div class="c"><h2 id="b-R">People like it. They are annoyed by reliability and access, not by the AI</h2><ul class="kpis"><li><b>193,148</b><span>reviews after cleaning</span></li><li><b>4.51 / 5</b><span>average rating</span></li><li><b>76 · 21 · 4</b><span>% positive, neutral, negative</span></li><li><b>0.25</b><span>rating vs polarity (Spearman)</span></li></ul><figure class="chart"><div role="img" aria-label="Stacked bar: 76 percent positive, 21 percent neutral, 4 percent negative reviews."><svg viewBox="0 0 720 130" aria-hidden="true" focusable="false"><rect class="bar-good" x="2.0" y="30" width="535.8" height="46" rx="4"/><rect class="bar-c" x="540.8" y="30" width="145.9" height="46" rx="4"/><rect class="bar-bad" x="689.6" y="30" width="25.4" height="46" rx="4"/><rect class="bar-good" x="0" y="102" width="12" height="12" rx="2"/><text x="18" y="112">Positive 76%</text><rect class="bar-c" x="172" y="102" width="12" height="12" rx="2"/><text x="190" y="112">Neutral 21%</text><rect class="bar-bad" x="336" y="102" width="12" height="12" rx="2"/><text x="354" y="112">Negative 4%</text></svg></div><figcaption>Sentiment split of 193,148 reviews (rounded, so the parts sum to 101%).</figcaption></figure>
+<p>Praise is about usefulness: <i>helpful, best ever, helps a lot, user friendly</i>. Criticism is mostly about reliability and access:</p>
+<figure class="chart"><div role="img" aria-label="Paired bars comparing how often four themes appear in low-star and high-star reviews. Errors and reliability: 18 percent versus 2 percent. Accuracy: 14 versus 7. Login: 11 versus 0.3. Pricing: 8 versus 1."><svg viewBox="0 0 720 228" aria-hidden="true" focusable="false"><rect class="bar-b" x="0" y="4" width="12" height="12" rx="2"/><text x="18" y="14">In 1–2★ reviews</text><rect class="bar-a" x="260" y="4" width="12" height="12" rx="2"/><text x="278" y="14">In 4–5★ reviews</text><text x="0" y="52">Errors &amp; reliability</text><rect class="bar-b" x="150" y="34" width="450.0" height="16" rx="3"/><text x="606.0" y="46">18%</text><rect class="bar-a" x="150" y="54" width="50.0" height="16" rx="3"/><text x="206.0" y="66">2%</text><text x="0" y="98">Answer accuracy</text><rect class="bar-b" x="150" y="80" width="350.0" height="16" rx="3"/><text x="506.0" y="92">14%</text><rect class="bar-a" x="150" y="100" width="175.0" height="16" rx="3"/><text x="331.0" y="112">7%</text><text x="0" y="144">Login / verification</text><rect class="bar-b" x="150" y="126" width="275.0" height="16" rx="3"/><text x="431.0" y="138">11%</text><rect class="bar-a" x="150" y="146" width="7.5" height="16" rx="3"/><text x="163.5" y="158">0.3%</text><text x="0" y="190">Pricing &amp; limits</text><rect class="bar-b" x="150" y="172" width="200.0" height="16" rx="3"/><text x="356.0" y="184">8%</text><rect class="bar-a" x="150" y="192" width="25.0" height="16" rx="3"/><text x="181.0" y="204">1%</text></svg></div><figcaption>Share of reviews mentioning each theme. Reliability and login problems are almost exclusive to low-star reviews.</figcaption></figure>
+<p>Stars and text disagree more than you would expect: the correlation is only 0.25, and about 1 in 8 low-star reviews use clearly positive wording (probable mis-taps, mixed reviews, typos such as "Nott good").</p>
+</div></section>
+<section class="beat" aria-labelledby="b-C" data-reveal><div class="k"><b aria-hidden="true">C</b><span class="mono">Caveat</span></div><div class="c"><h2 id="b-C">A lexicon-based model has blind spots</h2>
+<ul>
+<li>TextBlob misses sarcasm, slang and context, and the median review is only 4 words. About 20% of reviews score exactly 0.</li>
+<li>It is English-only. Reviews with emoji or other languages land in "neutral" about twice as often (about 35% against 18%), which inflates the neutral share.</li>
+<li>Aspect detection uses simple keyword rules, so the percentages are a lower bound.</li>
+<li>One platform and about 13 months of data.</li>
+</ul>
+<p><b>Ideas for further work:</b> transformer-based multilingual sentiment, language detection, topic modelling on 1–2★ reviews, and linking review spikes to release dates.</p>
+</div></section>
+
+</div>
+<nav class="next-prev" aria-label="More experiments">
+<a href="/work/mf4-log-analytics/" data-label="MF4 Log Analytics"><span class="mono muted">&larr; Previous</span><b>MF4 Log Analytics</b></a>
+<a href="/work/it-expenditure-powerbi/" data-label="Global IT Spend in Power BI"><span class="mono muted">Next &rarr;</span><b>Global IT Spend in Power BI</b></a>
+</nav>
+</div>
+</section>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
+
+<div class="guide" id="guide" data-greet="Stars say &lt;mark&gt;how much&lt;/mark&gt;. Text says why.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python DSA Learning Log: Notes and Practice | Anuj Nagar</title>
+<meta name="description" content="A public log of Python data structures and algorithms practice: 26 practice files across three levels and 9 interactive note pages.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/work/dsa-learning/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="Python DSA Learning Log: Notes and Practice | Anuj Nagar"><meta property="og:description" content="A public log of Python data structures and algorithms practice: 26 practice files across three levels and 9 interactive note pages."><meta property="og:url" content="https://anuj-nagar-0910.github.io/work/dsa-learning/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Python DSA Learning Log: Notes and Practice | Anuj Nagar"><meta name="twitter:description" content="A public log of Python data structures and algorithms practice: 26 practice files across three levels and 9 interactive note pages.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"SoftwareSourceCode","@id":"https://anuj-nagar-0910.github.io/work/dsa-learning/#work","name":"Python DSA Learning Log","url":"https://anuj-nagar-0910.github.io/work/dsa-learning/","description":"A public log of Python data structures and algorithms practice: 26 practice files across three levels and 9 interactive note pages.","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"},"dateModified":"2026-10-26","inLanguage":"en","sameAs":["https://github.com/Anuj-Nagar-0910/DSA_Learning"],"codeRepository":"https://github.com/Anuj-Nagar-0910/DSA_Learning","programmingLanguage":"Python"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"},{"@type":"ListItem","position":2,"name":"Experiments","item":"https://anuj-nagar-0910.github.io/work/"},{"@type":"ListItem","position":3,"name":"Python DSA Learning Log","item":"https://anuj-nagar-0910.github.io/work/dsa-learning/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="light" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/" aria-current="page">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="/#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="/#contact">Contact</a>
+</div>
+
+<main id="main">
+<section class="sec sec--navy case-hero" data-says="Learning in public means &lt;mark&gt;showing&lt;/mark&gt; the messy middle." aria-labelledby="h1">
+<div class="wrap">
+<nav class="crumbs mono" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Experiments</a> / 06</nav>
+<p class="eyebrow mono">Experiment 06</p>
+<h1 id="h1">Python DSA Learning Log</h1>
+<p class="lede">I’m learning data structures and algorithms in Python on the way to data science, and I’m doing it in public: practice files by level, interactive note pages, and a summary report that points at what to clean up next.</p>
+<div class="pills" style="margin-top:28px"><a class="pill pill--lg" href="https://anuj-nagar-0910.github.io/DSA_Learning/" rel="external" target="_blank">Open the live notes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910/DSA_Learning" rel="external" target="_blank">Source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+<dl class="facts"><div><dt class="mono">Period</dt><dd>Mar to May 2026</dd></div><div><dt class="mono">Stack</dt><dd>Python, HTML/JS note pages</dd></div><div><dt class="mono">Scope</dt><dd>26 Python files, 9 note pages, 16 themes</dd></div><div><dt class="mono">Status</dt><dd>Learning log, not a library</dd></div></dl>
+</div>
+</section>
+<section class="sec sec--paper" aria-label="Case study">
+<div class="wrap">
+<div class="beats">
+<section class="beat" aria-labelledby="b-Q" data-reveal><div class="k"><b aria-hidden="true">Q</b><span class="mono">Question</span></div><div class="c"><h2 id="b-Q">Can I learn DSA in public and keep myself honest?</h2>
+<p>Writing code is one thing; being able to explain it is another. The notes pages force the second: each topic gets a dry-run table or a graph builder you can click through.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-M" data-reveal><div class="k"><b aria-hidden="true">M</b><span class="mono">Method</span></div><div class="c"><h2 id="b-M">Three levels of practice, nine note pages, one summary report</h2><figure class="chart"><div role="img" aria-label="Stacked bar of 26 Python practice files: 6 basics, 16 intermediate, 4 advanced."><svg viewBox="0 0 720 130" aria-hidden="true" focusable="false"><rect class="bar-c" x="2.0" y="30" width="162.2" height="46" rx="4"/><rect class="bar-b" x="167.2" y="30" width="437.6" height="46" rx="4"/><rect class="bar-a" x="607.8" y="30" width="107.2" height="46" rx="4"/><rect class="bar-c" x="0" y="102" width="12" height="12" rx="2"/><text x="18" y="112">Basics 6 files</text><rect class="bar-b" x="156" y="102" width="12" height="12" rx="2"/><text x="174" y="112">Intermediate 16 files</text><rect class="bar-a" x="360" y="102" width="12" height="12" rx="2"/><text x="378" y="112">Advanced 4 files</text></svg></div><figcaption>26 practice files by level.</figcaption></figure>
+<ul>
+<li><b>Practice.</b> Basics, intermediate and advanced folders of Python files.</li>
+<li><b>Notes.</b> Nine interactive pages, such as a clickable dry-run table and a graph builder.</li>
+<li><b>Review.</b> A summary report lists learning coverage, topic balance, the most ready files and the best next cleanup.</li>
+</ul>
+</div></section>
+<section class="beat" aria-labelledby="b-R" data-reveal><div class="k"><b aria-hidden="true">R</b><span class="mono">Result</span></div><div class="c"><h2 id="b-R">16 themes covered so far</h2>
+<p>Linked lists, queues, stacks, heaps, dictionaries and sets; binary search, two pointers, recursion and matrix traversal; strings, trees, graphs and prime numbers; plus object-oriented classes and hash-based grouping.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-C" data-reveal><div class="k"><b aria-hidden="true">C</b><span class="mono">Caveat</span></div><div class="c"><h2 id="b-C">A learning log, not a library</h2>
+<ul>
+<li>The files are practice, at different levels of polish. The summary report itself marks which are ready and which need cleanup.</li>
+<li>Nothing here is production code. It is evidence of habit: showing up, writing it down, and fixing what is weak.</li>
+</ul>
+</div></section>
+
+</div>
+<nav class="next-prev" aria-label="More experiments">
+<a href="/work/python-test-automation/" data-label="Python Test Automation Framework"><span class="mono muted">&larr; Previous</span><b>Python Test Automation Framework</b></a>
+<a href="/work/mf4-log-analytics/" data-label="MF4 Log Analytics"><span class="mono muted">Next &rarr;</span><b>MF4 Log Analytics</b></a>
+</nav>
+</div>
+</section>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
+
+<div class="guide" id="guide" data-greet="Learning in public means &lt;mark&gt;showing&lt;/mark&gt; the messy middle.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

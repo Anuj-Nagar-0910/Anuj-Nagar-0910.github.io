@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global IT Spend Dashboard in Power BI: Plan vs Actual | Anuj Nagar</title>
+<meta name="description" content="A Power BI dashboard on $900M of IT spend: plan versus forecast versus actual, variance drill-downs, DAX measures, Power Query prep and a Python EDA notebook.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/work/it-expenditure-powerbi/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="Global IT Spend Dashboard in Power BI: Plan vs Actual | Anuj Nagar"><meta property="og:description" content="A Power BI dashboard on $900M of IT spend: plan versus forecast versus actual, variance drill-downs, DAX measures, Power Query prep and a Python EDA notebook."><meta property="og:url" content="https://anuj-nagar-0910.github.io/work/it-expenditure-powerbi/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Global IT Spend Dashboard in Power BI: Plan vs Actual | Anuj Nagar"><meta name="twitter:description" content="A Power BI dashboard on $900M of IT spend: plan versus forecast versus actual, variance drill-downs, DAX measures, Power Query prep and a Python EDA notebook.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"CreativeWork","@id":"https://anuj-nagar-0910.github.io/work/it-expenditure-powerbi/#work","name":"Global IT Spend in Power BI","url":"https://anuj-nagar-0910.github.io/work/it-expenditure-powerbi/","description":"A Power BI dashboard on $900M of IT spend: plan versus forecast versus actual, variance drill-downs, DAX measures, Power Query prep and a Python EDA notebook.","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"},"dateModified":"2026-10-26","inLanguage":"en","sameAs":["https://github.com/Anuj-Nagar-0910/it-expenditure-analysis-powerbi"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"},{"@type":"ListItem","position":2,"name":"Experiments","item":"https://anuj-nagar-0910.github.io/work/"},{"@type":"ListItem","position":3,"name":"Global IT Spend in Power BI","item":"https://anuj-nagar-0910.github.io/work/it-expenditure-powerbi/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="light" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/" aria-current="page">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="/#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="/#contact">Contact</a>
+</div>
+
+<main id="main">
+<section class="sec sec--navy case-hero" data-says="Watch the &lt;mark&gt;YTD trap&lt;/mark&gt;. Plan is a full year." aria-labelledby="h1">
+<div class="wrap">
+<nav class="crumbs mono" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Experiments</a> / 03</nav>
+<p class="eyebrow mono">Experiment 03</p>
+<h1 id="h1">Global IT Spend in Power BI</h1>
+<p class="lede">How does a large company keep $900M of IT spend honest? This dashboard compares plan, forecast and actuals across business areas, countries and cost types, and shows where the variance comes from.</p>
+<div class="pills" style="margin-top:28px">
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910/it-expenditure-analysis-powerbi" rel="external" target="_blank">Source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+<dl class="facts"><div><dt class="mono">Period</dt><dd>Built Oct 2026</dd></div><div><dt class="mono">Stack</dt><dd>Power BI Desktop, DAX, Power Query, Python notebook</dd></div><div><dt class="mono">Data</dt><dd>93,729 rows, 7 business areas, 30 countries</dd></div><div><dt class="mono">Context</dt><dd>Crio.Do DA-201, session 7</dd></div></dl>
+</div>
+</section>
+<section class="sec sec--paper" aria-label="Case study">
+<div class="wrap">
+<div class="beats">
+<section class="beat" aria-labelledby="b-Q" data-reveal><div class="k"><b aria-hidden="true">Q</b><span class="mono">Question</span></div><div class="c"><h2 id="b-Q">Where do plan, forecast and actuals drift apart?</h2>
+<ol>
+<li><b>Cost distribution:</b> how spend splits across 7 business areas, 5 IT areas (38 sub-areas), 6 regions (30 countries) and 5 cost-element groups (23 sub-groups).</li>
+<li><b>Budget and forecast alignment:</b> where are the largest gaps between actual, forecast and plan, over time and geography?</li>
+<li><b>Structural drivers:</b> what drives deviations in areas such as internal versus external labour, shared services and R&amp;D planning?</li>
+</ol>
+</div></section>
+<section class="beat" aria-labelledby="b-M" data-reveal><div class="k"><b aria-hidden="true">M</b><span class="mono">Method</span></div><div class="c"><h2 id="b-M">Power Query prep, a clean model, DAX measures</h2>
+<ul>
+<li><b>Append and tag.</b> Combine the two sheets (81,610 + 12,119 rows) and tag each with a dataset period, so a single click can return to the original view.</li>
+<li><b>Replace nulls with 0.</b> Each ERP row fills only one of actual, forecast or plan. Dropping rows with nulls would erase the budget.</li>
+<li><b>Sort months properly.</b> Add a month number and quarter, and sort by column, so Power BI doesn't order months alphabetically.</li>
+<li><b>Keep the credits.</b> 1,463 negative actual rows (about −$126M) are valid chargebacks and accrual reversals. Removing them would inflate net spend.</li>
+<li><b>Measure.</b> Variance is defined once as <code>Actual − Plan</code>, so negative means underspend, and used everywhere.</li>
+</ul>
+<p>A Python EDA notebook sits alongside the dashboard for checks that are easier in code.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-R" data-reveal><div class="k"><b aria-hidden="true">R</b><span class="mono">Result</span></div><div class="c"><h2 id="b-R">Full-year actuals land 3.77% under plan</h2><ul class="kpis"><li><b>$900.40M</b><span>full-year plan</span></li><li><b>$890.54M</b><span>forecast</span></li><li><b>$866.41M</b><span>actual</span></li><li><b>−$33.99M</b><span>actual vs plan (−3.77%)</span></li></ul><figure class="chart"><div role="img" aria-label="Three bars: plan 900.40 million dollars, forecast 890.54 million, actual 866.41 million."><svg viewBox="0 0 720 250" aria-hidden="true" focusable="false"><line class="axis" x1="0" x2="720" y1="216" y2="216" stroke-width="2"/><rect class="bar-a" x="24.0" y="48.5" width="208.0" height="167.5" rx="4"/><text x="128.0" y="40.5" text-anchor="middle" style="font-weight:700">$900.40M</text><text x="128.0" y="238" text-anchor="middle">Plan</text><rect class="bar-c" x="256.0" y="50.4" width="208.0" height="165.6" rx="4"/><text x="360.0" y="42.4" text-anchor="middle" style="font-weight:700">$890.54M</text><text x="360.0" y="238" text-anchor="middle">Forecast</text><rect class="bar-b" x="488.0" y="54.8" width="208.0" height="161.2" rx="4"/><text x="592.0" y="46.8" text-anchor="middle" style="font-weight:700">$866.41M</text><text x="592.0" y="238" text-anchor="middle">Actual</text></svg></div><figcaption>Full-year combined view, January to December, 93,729 rows. All three are close; the story is in the drill-downs.</figcaption></figure>
+<p>The drill-downs are where the questions live: variance by business area and region, internal versus external labour, and a clear flag on Europe shared services overspend.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-C" data-reveal><div class="k"><b aria-hidden="true">C</b><span class="mono">Caveat</span></div><div class="c"><h2 id="b-C">Plan is a full year; actuals are not</h2>
+<p>The first version of the numbers looked alarming: actuals 38% below plan. That is a comparison of eight months of actuals against twelve months of plan. The fair like-for-like view is January to August only:</p>
+<figure class="chart"><div role="img" aria-label="Three bars for January to August: plan 611.31 million dollars, forecast 574.82 million, actual 555.73 million."><svg viewBox="0 0 720 250" aria-hidden="true" focusable="false"><line class="axis" x1="0" x2="720" y1="216" y2="216" stroke-width="2"/><rect class="bar-a" x="24.0" y="53.6" width="208.0" height="162.4" rx="4"/><text x="128.0" y="45.6" text-anchor="middle" style="font-weight:700">$611.31M</text><text x="128.0" y="238" text-anchor="middle">Plan</text><rect class="bar-c" x="256.0" y="63.3" width="208.0" height="152.7" rx="4"/><text x="360.0" y="55.3" text-anchor="middle" style="font-weight:700">$574.82M</text><text x="360.0" y="238" text-anchor="middle">Forecast</text><rect class="bar-b" x="488.0" y="68.3" width="208.0" height="147.7" rx="4"/><text x="592.0" y="60.3" text-anchor="middle" style="font-weight:700">$555.73M</text><text x="592.0" y="238" text-anchor="middle">Actual</text></svg></div><figcaption>Year-to-date, January to August: actual is 9.09% under plan and 3.32% under forecast.</figcaption></figure>
+<ul>
+<li>Use the <b>month slicer</b>, not the dataset-period filter, for a fair year-to-date comparison.</li>
+<li>Replacing nulls with 0 is safe here only because each row fills exactly one measure.</li>
+<li>This is a practice dataset, so the real-world causes of the variances are not known.</li>
+</ul>
+</div></section>
+
+</div>
+<nav class="next-prev" aria-label="More experiments">
+<a href="/work/chatgpt-review-analysis/" data-label="ChatGPT Review Analysis"><span class="mono muted">&larr; Previous</span><b>ChatGPT Review Analysis</b></a>
+<a href="/work/coke-sales-analysis/" data-label="Coca-Cola US Sales in Excel"><span class="mono muted">Next &rarr;</span><b>Coca-Cola US Sales in Excel</b></a>
+</nav>
+</div>
+</section>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
+
+<div class="guide" id="guide" data-greet="Watch the &lt;mark&gt;YTD trap&lt;/mark&gt;. Plan is a full year.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

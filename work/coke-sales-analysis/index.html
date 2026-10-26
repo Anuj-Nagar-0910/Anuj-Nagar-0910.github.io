@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coca-Cola US Retail Sales Analysis in Excel | Anuj Nagar</title>
+<meta name="description" content="An Excel dashboard on 3,888 invoice lines of 2021 US beverage sales: retailer, region and brand margins, seasonality and data-quality flags.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/work/coke-sales-analysis/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="Coca-Cola US Retail Sales Analysis in Excel | Anuj Nagar"><meta property="og:description" content="An Excel dashboard on 3,888 invoice lines of 2021 US beverage sales: retailer, region and brand margins, seasonality and data-quality flags."><meta property="og:url" content="https://anuj-nagar-0910.github.io/work/coke-sales-analysis/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Coca-Cola US Retail Sales Analysis in Excel | Anuj Nagar"><meta name="twitter:description" content="An Excel dashboard on 3,888 invoice lines of 2021 US beverage sales: retailer, region and brand margins, seasonality and data-quality flags.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"CreativeWork","@id":"https://anuj-nagar-0910.github.io/work/coke-sales-analysis/#work","name":"Coca-Cola US Sales in Excel","url":"https://anuj-nagar-0910.github.io/work/coke-sales-analysis/","description":"An Excel dashboard on 3,888 invoice lines of 2021 US beverage sales: retailer, region and brand margins, seasonality and data-quality flags.","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"},"dateModified":"2026-10-26","inLanguage":"en","sameAs":["https://github.com/Anuj-Nagar-0910/Coke-Sales-Analysis"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"},{"@type":"ListItem","position":2,"name":"Experiments","item":"https://anuj-nagar-0910.github.io/work/"},{"@type":"ListItem","position":3,"name":"Coca-Cola US Sales in Excel","item":"https://anuj-nagar-0910.github.io/work/coke-sales-analysis/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="light" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/" aria-current="page">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="/#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="/#contact">Contact</a>
+</div>
+
+<main id="main">
+<section class="sec sec--navy case-hero" data-says="The biggest market was &lt;mark&gt;not&lt;/mark&gt; the most profitable." aria-labelledby="h1">
+<div class="wrap">
+<nav class="crumbs mono" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Experiments</a> / 04</nav>
+<p class="eyebrow mono">Experiment 04</p>
+<h1 id="h1">Coca-Cola US Sales in Excel</h1>
+<p class="lede">Selling more units is not enough. The goal is to sell the right products, in the right regions, through the right retailers, at a healthy margin. This workbook finds where that is and isn’t happening.</p>
+<div class="pills" style="margin-top:28px">
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910/Coke-Sales-Analysis" rel="external" target="_blank">Source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+<dl class="facts"><div><dt class="mono">Period</dt><dd>Built Oct 2026; data covers 2021</dd></div><div><dt class="mono">Stack</dt><dd>Microsoft Excel: SUMIFS, conditional formatting, data validation</dd></div><div><dt class="mono">Data</dt><dd>3,888 invoice lines, 4 retailers, 50 states</dd></div><div><dt class="mono">Context</dt><dd>Crio.Do DA-201, session 4</dd></div></dl>
+</div>
+</section>
+<section class="sec sec--paper" aria-label="Case study">
+<div class="wrap">
+<div class="beats">
+<section class="beat" aria-labelledby="b-Q" data-reveal><div class="k"><b aria-hidden="true">Q</b><span class="mono">Question</span></div><div class="c"><h2 id="b-Q">How can sales and profitability improve across US retailers?</h2>
+<ol>
+<li><b>Where:</b> how do sales vary by retailer, region, state and brand?</li>
+<li><b>When:</b> is there a seasonal pattern in sales and margin?</li>
+<li><b>How well:</b> where are margins strong, and where are they weak?</li>
+</ol>
+<p>The data: 3,888 invoice lines from 1 January to 31 December 2021, covering 4 retailers, 5 regions, 50 states and 6 brands.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-M" data-reveal><div class="k"><b aria-hidden="true">M</b><span class="mono">Method</span></div><div class="c"><h2 id="b-M">Everything live in Excel, margins weighted</h2>
+<ul>
+<li><b>Prepare.</b> No missing values or duplicates; real dates and numbers; header frozen, filters on; a <code>Month</code> helper column. The original file stays untouched.</li>
+<li><b>Aggregate.</b> <code>SUMIFS</code> for every retailer, region, brand, month and state total.</li>
+<li><b>Weight the margins.</b> Operating profit divided by sales, never a simple average of row-level percentages, so big orders count in proportion.</li>
+<li><b>Show.</b> A dashboard with KPI tiles and 7 charts, colour-scale heatmaps (region × brand), and an <b>Explorer</b> sheet with dropdowns for retailer, region and brand.</li>
+</ul>
+</div></section>
+<section class="beat" aria-labelledby="b-R" data-reveal><div class="k"><b aria-hidden="true">R</b><span class="mono">Result</span></div><div class="c"><h2 id="b-R">Volume and profit point in different directions</h2><ul class="kpis"><li><b>$8.68M</b><span>total sales</span></li><li><b>$3.17M</b><span>operating profit</span></li><li><b>36.5%</b><span>weighted margin</span></li><li><b>17.15M</b><span>units sold</span></li></ul><figure class="chart"><div role="img" aria-label="Paired bars per retailer. Sodapop: 50.7 percent of sales at 37.4 percent margin. FizzySip: 29.8 percent of sales at 32.3 percent margin. BevCo: 14.9 percent of sales at 42.0 percent margin. DreamCo: 4.7 percent at 36.6 percent."><svg viewBox="0 0 720 228" aria-hidden="true" focusable="false"><rect class="bar-b" x="0" y="4" width="12" height="12" rx="2"/><text x="18" y="14">Share of sales</text><rect class="bar-a" x="260" y="4" width="12" height="12" rx="2"/><text x="278" y="14">Operating margin</text><text x="0" y="52">Sodapop</text><rect class="bar-b" x="150" y="34" width="422.5" height="16" rx="3"/><text x="578.5" y="46">50.7%</text><rect class="bar-a" x="150" y="54" width="311.7" height="16" rx="3"/><text x="467.7" y="66">37.4%</text><text x="0" y="98">FizzySip</text><rect class="bar-b" x="150" y="80" width="248.3" height="16" rx="3"/><text x="404.3" y="92">29.8%</text><rect class="bar-a" x="150" y="100" width="269.2" height="16" rx="3"/><text x="425.2" y="112">32.3%</text><text x="0" y="144">BevCo</text><rect class="bar-b" x="150" y="126" width="124.2" height="16" rx="3"/><text x="280.2" y="138">14.9%</text><rect class="bar-a" x="150" y="146" width="350.0" height="16" rx="3"/><text x="506.0" y="158">42%</text><text x="0" y="190">DreamCo</text><rect class="bar-b" x="150" y="172" width="39.2" height="16" rx="3"/><text x="195.2" y="184">4.7%</text><rect class="bar-a" x="150" y="192" width="305.0" height="16" rx="3"/><text x="461.0" y="204">36.6%</text></svg></div><figcaption>Retailers: FizzySip is the second-largest account but has the thinnest margin. BevCo is small but the most profitable.</figcaption></figure>
+<p>The same pattern shows by region: the <b>West</b> brings in about a third of sales at the lowest margin (32.6%), while the <b>South</b> is smaller but the most profitable (42.0%). Among brands, Coca-Cola leads at 39.3% and Diet Coke trails at 33.4%.</p>
+<p>Demand is seasonal, and the margin barely moves, so the swings come from volume, not profitability:</p>
+<figure class="chart"><div role="img" aria-label="Line chart of monthly sales in 2021. Low from January to April at about 0.5 million dollars, peaks in July and December at about 1.04 million."><svg viewBox="0 0 720 250" aria-hidden="true" focusable="false"><line class="axis" x1="52" x2="704" y1="216.0" y2="216.0" stroke-dasharray="3 4"/><text x="0" y="220.0">$0M</text><line class="axis" x1="52" x2="704" y1="134.3" y2="134.3" stroke-dasharray="3 4"/><text x="0" y="138.3">$0.5M</text><line class="axis" x1="52" x2="704" y1="52.7" y2="52.7" stroke-dasharray="3 4"/><text x="0" y="56.7">$1M</text><polyline points="52.0,132.6 111.3,136.8 170.5,137.0 229.8,135.2 289.1,106.0 348.4,68.4 407.6,45.9 466.9,61.6 526.2,104.8 585.5,114.2 644.7,86.0 704.0,45.2" fill="none" stroke="var(--accent)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="52.0" cy="132.6" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="52.0" y="238" text-anchor="middle">J</text><circle cx="111.3" cy="136.8" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="111.3" y="238" text-anchor="middle">F</text><circle cx="170.5" cy="137.0" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="170.5" y="238" text-anchor="middle">M</text><circle cx="229.8" cy="135.2" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="229.8" y="238" text-anchor="middle">A</text><circle cx="289.1" cy="106.0" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="289.1" y="238" text-anchor="middle">M</text><circle cx="348.4" cy="68.4" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="348.4" y="238" text-anchor="middle">J</text><circle cx="407.6" cy="45.9" r="5.5" fill="var(--accent)" stroke="var(--fg)" stroke-width="2"/><text x="407.6" y="238" text-anchor="middle">J</text><circle cx="466.9" cy="61.6" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="466.9" y="238" text-anchor="middle">A</text><circle cx="526.2" cy="104.8" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="526.2" y="238" text-anchor="middle">S</text><circle cx="585.5" cy="114.2" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="585.5" y="238" text-anchor="middle">O</text><circle cx="644.7" cy="86.0" r="3.5" fill="var(--bg)" stroke="var(--fg)" stroke-width="2"/><text x="644.7" y="238" text-anchor="middle">N</text><circle cx="704.0" cy="45.2" r="5.5" fill="var(--accent)" stroke="var(--fg)" stroke-width="2"/><text x="704.0" y="238" text-anchor="middle">D</text><text x="407.6" y="33.9" text-anchor="middle" style="font-weight:700">$1.04M</text><text x="708.0" y="33.2" text-anchor="end" style="font-weight:700">$1.05M</text></svg></div><figcaption>Monthly sales, 2021. Peaks in July (summer) and December (holidays); margin stays between 35.8% and 37.0% all year.</figcaption></figure>
+<p><b>What I would recommend:</b> renegotiate terms with FizzySip and in the West, grow BevCo and the South, time promotions around July and December, and review Diet Coke and Sprite pricing or costs.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-C" data-reveal><div class="k"><b aria-hidden="true">C</b><span class="mono">Caveat</span></div><div class="c"><h2 id="b-C">Three oddities I left in, and flagged</h2>
+<ul>
+<li><b>Zero-sale rows.</b> Units sold has a minimum of 0, so a few rows record no sales.</li>
+<li><b>Wyoming and Utah are identical,</b> down to the cent: $199,937.50 in sales and $69,359.38 in profit.</li>
+<li><b>South region = BevCo.</b> The two contain exactly the same rows.</li>
+</ul>
+<p>I kept them as supplied so the totals tie back to the source, and recommended verifying them with the data owner before acting on any of the findings.</p>
+</div></section>
+
+</div>
+<nav class="next-prev" aria-label="More experiments">
+<a href="/work/it-expenditure-powerbi/" data-label="Global IT Spend in Power BI"><span class="mono muted">&larr; Previous</span><b>Global IT Spend in Power BI</b></a>
+<a href="/work/python-test-automation/" data-label="Python Test Automation Framework"><span class="mono muted">Next &rarr;</span><b>Python Test Automation Framework</b></a>
+</nav>
+</div>
+</section>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
+
+<div class="guide" id="guide" data-greet="The biggest market was &lt;mark&gt;not&lt;/mark&gt; the most profitable.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

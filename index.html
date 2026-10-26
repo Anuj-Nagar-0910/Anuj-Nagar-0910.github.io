@@ -1,299 +1,233 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anuj Nagar - AI Prompt Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #FDFDFD; color: #333333; }
-        .nav-link { transition: color 0.3s; }
-        .nav-link:hover, .nav-link.active { color: #4A7C9B; } /* Primary accent blue */
-        .chart-container { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 400px; max-height: 50vh; }
-        @media (min-width: 768px) { .chart-container { height: 500px; } }
-        .project-card { transition: transform 0.3s, box-shadow 0.3s; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-        .modal-backdrop { transition: opacity 0.3s; }
-        .modal-content { transition: transform 0.3s, opacity 0.3s; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Anuj Nagar | Data Analyst and Science Explainer</title>
+<meta name="description" content="Data analysis in Python, SQL and Power BI, plus plain-language science writing. Start with MF4 Log Analytics, which turns about 95 hours of log checking into 2.5.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="Anuj Nagar | Data Analyst and Science Explainer"><meta property="og:description" content="Data analysis in Python, SQL and Power BI, plus plain-language science writing. Start with MF4 Log Analytics, which turns about 95 hours of log checking into 2.5."><meta property="og:url" content="https://anuj-nagar-0910.github.io/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Anuj Nagar | Data Analyst and Science Explainer"><meta name="twitter:description" content="Data analysis in Python, SQL and Power BI, plus plain-language science writing. Start with MF4 Log Analytics, which turns about 95 hours of log checking into 2.5.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"}]}]}</script>
 </head>
-<body class="antialiased">
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="ink" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="#contact">Contact</a>
+</div>
 
-    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-gray-800">Anuj Nagar</div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#summary" class="nav-link text-gray-600 font-medium hover:text-sky-700">Summary</a>
-                <a href="#journey" class="nav-link text-gray-600 font-medium hover:text-sky-700">Journey</a>
-                <a href="#skills" class="nav-link text-gray-600 font-medium hover:text-sky-700">Skills</a>
-                <a href="#projects" class="nav-link text-gray-600 font-medium hover:text-sky-700">Projects</a>
-            </div>
-            <a href="mailto:anuj456nagar@gmail.com" class="hidden md:inline-block bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">Contact Me</a>
-            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
-                <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
-                <span class="block w-6 h-0.5 bg-gray-700"></span>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#summary" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Summary</a>
-            <a href="#journey" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Journey</a>
-            <a href="#skills" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Skills</a>
-            <a href="#projects" class="block py-2 nav-link text-gray-600 hover:text-sky-700">Projects</a>
-            <a href="mailto:anuj456nagar@gmail.com" class="block mt-2 text-center bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">Contact Me</a>
-        </div>
-    </header>
+<main id="main">
 
-    <main class="container mx-auto px-6 py-12">
+<section class="sec sec--accent hero" data-says="Hi, I’m <mark>Sig</mark>, the probe. Drag the slider, then scroll." aria-label="Introduction">
+<div class="wrap">
+<h1>I turn messy machine data into clear answers.</h1>
+<p class="sub">Data analysis in Python, SQL and Power BI. And science explained in plain words, at UnFogIt.</p>
+<div class="pills cta"><a class="pill pill--lg" href="#entry-01">See the flagship project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><a class="pill pill--lg pill--ghost" href="/writing/">Read the field notes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="lab" id="lab" role="group" aria-labelledby="lab-h">
+<header><p class="lab-title" id="lab-h">Signal lab</p><span class="tag mono">synthetic data</span></header>
+<svg viewBox="0 0 320 130" role="img" aria-label="Two digital signals. Path A rises at zero milliseconds. Path B rises at a position you control with the slider.">
+<g class="grid" stroke-width="1"><path d="M14 22v100M61 22v100M108 22v100M155 22v100M202 22v100M249 22v100M296 22v100"/></g>
+<line x1="108" x2="108" y1="14" y2="122" stroke="#12151B" stroke-dasharray="3 3" opacity=".55"/>
+<text x="112" y="22">A starts</text>
+<path class="tr-a" d="M14,70 H108 V46 H306" fill="none" stroke-width="2.6"/>
+<path class="tr-b" id="trb" d="M14,108 H155 V84 H306" fill="none" stroke-width="2.6"/>
+<line id="dB" x1="155" x2="155" y1="60" y2="122" stroke="#FF5A1F" stroke-dasharray="3 3"/>
+<text id="lblB" x="159" y="118">B starts</text>
+<text x="16" y="62">PATH A</text><text x="16" y="100">PATH B</text>
+</svg>
+<label for="off">Remove clock offset <output id="off-v" for="off">0.0 ms</output></label>
+<input id="off" type="range" min="0" max="3.2" step="0.1" value="0" aria-describedby="lab-msg">
+<div class="readout"><span id="r1">Raw timestamps: B vs A +2.0 ms</span><span class="verdict ok" id="vd" role="status">OK</span><span id="r2">No offset removed yet</span></div>
+<p class="lab-note" id="lab-msg" aria-live="polite">Looks fine: A seems to start first.</p>
+<div class="row-btn"><button class="mini" id="est" type="button">Use the estimated 3.2 ms</button><button class="mini" id="rst" type="button">Reset</button></div>
+<p class="lab-note">A replay of the demo recording in my MF4 project: the raw view hides a violation.</p>
+</div>
+</div>
+</section>
 
-        <section id="summary" class="text-center min-h-[60vh] flex flex-col justify-center items-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 mb-4">AI Prompt Engineer</h1>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-                A highly motivated professional transitioning from Software Architecture and Automotive Testing into AI. I specialize in crafting top-notch prompts and leveraging tools like LangChain, Ollama, and Qdrant to build innovative AI solutions.
-            </p>
-            <div class="flex space-x-4">
-                <a href="#projects" class="bg-sky-700 text-white font-medium py-3 px-6 rounded-lg hover:bg-sky-800 transition-colors">View My Work</a>
-                <a href="https://www.linkedin.com/in/anuj-n-478690143/" target="_blank" class="bg-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">LinkedIn</a>
-            </div>
-        </section>
+<section class="sec sec--paper intro" data-says="That’s Anuj. Five years of chasing <mark>milliseconds</mark>." aria-label="About">
+<div class="wrap">
+<p class="eyebrow mono">About the notebook</p>
+<p data-words>I’m Anuj. For five years I’ve checked whether automotive software behaves, chasing millisecond start-up bugs through gigabytes of measurement logs.</p>
+<p data-words class="wide" style="margin-top:.8em">Now I’m turning that habit into data analysis, and I write UnFogIt, where research too dense for headlines gets explained in plain words.</p>
+<div class="receipts" aria-label="Skills, each linked to the work that backs it"><a class="chip" href="https://github.com/Anuj-Nagar-0910/mf4-log-analytics" rel="external" target="_blank">Python <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/mf4-log-analytics" rel="external" target="_blank">pandas <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/mf4-log-analytics" rel="external" target="_blank">NumPy <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/mf4-log-analytics" rel="external" target="_blank">asammdf <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/Chat-Gpt-Review-Analysis" rel="external" target="_blank">NLP <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/it-expenditure-analysis-powerbi" rel="external" target="_blank">Power BI <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/it-expenditure-analysis-powerbi" rel="external" target="_blank">DAX <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/Coke-Sales-Analysis" rel="external" target="_blank">Excel <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/python-testing-automation" rel="external" target="_blank">pytest <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/python-testing-automation" rel="external" target="_blank">GitHub Actions <small>repo</small></a><a class="chip" href="https://github.com/Anuj-Nagar-0910/smart-dashboard-demos" rel="external" target="_blank">D3.js <small>repo</small></a><a class="chip" href="/lab-log/">SQL <small>course</small></a><a class="chip" href="/lab-log/">Tableau <small>course</small></a></div>
+<p class="muted" style="margin-top:14px;font-size:.95rem;max-width:60ch">Every skill links to the repo that shows it. If I can’t point at the work, it isn’t on this list.</p>
+</div>
+</section>
 
-        <section id="journey" class="py-16 md:py-24">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">My Career Journey</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">From ensuring software quality to architecting systems, my path has equipped me with a unique analytical perspective for AI.</p>
-            </div>
-            <div class="relative max-w-2xl mx-auto">
-                <div class="absolute left-1/2 w-0.5 h-full bg-emerald-300 transform -translate-x-1/2"></div>
-                <div class="relative mb-12">
-                    <div class="absolute w-4 h-4 bg-sky-700 rounded-full mt-1.5 left-1/2 transform -translate-x-1/2 border-2 border-white"></div>
-                    <div class="ml-[calc(50%+2rem)] md:ml-[calc(50%+3rem)] pl-8">
-                        <h3 class="text-xl font-bold text-gray-800">Software Architect</h3>
-                        <p class="text-sm text-gray-500">March, 2025 – Present</p>
-                        <p class="mt-2 text-gray-600">Led architectural design for EPS, focusing on scalability and performance. This role honed my ability to understand complex systems and data flows, a crucial skill for designing sophisticated AI and prompt interaction models.</p>
-                    </div>
-                </div>
-                <div class="relative">
-                    <div class="absolute w-4 h-4 bg-sky-700 rounded-full mt-1.5 left-1/2 transform -translate-x-1/2 border-2 border-white"></div>
-                    <div class="mr-[calc(50%+2rem)] md:mr-[calc(50%+3rem)] pr-8 text-right">
-                        <h3 class="text-xl font-bold text-gray-800">Automotive Tester</h3>
-                        <p class="text-sm text-gray-500">March, 2021 – March, 2025</p>
-                        <p class="mt-2 text-gray-600">Performed rigorous System and Software Integration testing and Automating them. This experience built a strong foundation in analytical problem-solving and attention to detail, essential for refining and debugging AI prompts for optimal performance.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="sec sec--navy" id="entry-01" data-says="The big one. <mark>95 hours</mark> of log-reading, estimated down to about 2.5." aria-labelledby="e1">
+<div class="wrap entry">
+<p class="num" aria-hidden="true">01</p>
+<div class="head" data-reveal>
+<p class="eyebrow mono">Experiment 01 &middot; flagship</p>
+<h2 id="e1">MF4 Log Analytics</h2>
+<p class="lede">Two processors, two clocks, hundreds of power-ups. For every start-up in a multi-gigabyte recording, which one came first, by how many milliseconds, and why.</p>
+</div>
+<div class="stat" data-reveal>
+<div class="big">95 h <span class="arrow" aria-hidden="true">&rarr;</span> 2.5 h</div>
+<p><span class="sr">From about 95 hours to about 2.5 hours. </span>Estimated for a 10-recording campaign (about 585 start-ups). The tool time was measured once; the manual time is my estimate of 10 minutes per cycle.</p>
+</div>
+<div class="pipe" data-reveal><ol style="--n:7" aria-label="The seven steps of the pipeline"><li><span class="mono">01</span><b>Load</b><span>Open multi-GB MF4 files lazily</span></li><li><span class="mono">02</span><b>Segment</b><span>Split into power-ups</span></li><li><span class="mono">03</span><b>Measure</b><span>Resets, gaps, first app update</span></li><li><span class="mono">04</span><b>Correct</b><span>Remove clock offset between paths</span></li><li><span class="mono">05</span><b>Cross-check</b><span>A second, offset-free method</span></li><li><span class="mono">06</span><b>Judge</b><span>OK, NOK, CHECK or INFO</span></li><li><span class="mono">07</span><b>Report</b><span>CSV plus browser dashboard</span></li></ol></div>
+<div class="actions pills" data-reveal>
+<a class="pill pill--lg" href="/work/mf4-log-analytics/" data-label="MF4 Log Analytics">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://anuj-nagar-0910.github.io/mf4-log-analytics/workflow.html" rel="external" target="_blank">Open the live workflow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910/mf4-log-analytics" rel="external" target="_blank">Source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+</div>
+</section>
 
-        <section id="skills" class="py-16 md:py-24 bg-white rounded-2xl shadow-sm">
-             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Skills & Technology Toolkit</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">I utilize a modern stack to develop, orchestrate, and deploy AI-driven applications. This chart represents my confidence and experience level with key technologies.</p>
-            </div>
-            <div class="chart-container">
-                <canvas id="skillsChart"></canvas>
-            </div>
-        </section>
+<section class="sec sec--paper" data-says="Five more experiments. Each one says what went wrong, too." aria-labelledby="work-h">
+<div class="wrap">
+<div class="list-head"><div><p class="eyebrow mono">More experiments</p><h2 id="work-h">The rest of the bench</h2></div>
+<a class="pill" href="/work/">All experiments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="rows" data-reveal>
+<a class="row" href="/work/chatgpt-review-analysis/" data-label="ChatGPT Review Analysis">
+<span class="n">02</span>
+<span><h3>ChatGPT Review Analysis</h3><span class="b">What do 193,148 app reviews actually say?</span></span>
+<span class="t">Python · TextBlob · NLP · Jupyter<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/it-expenditure-powerbi/" data-label="Global IT Spend in Power BI">
+<span class="n">03</span>
+<span><h3>Global IT Spend in Power BI</h3><span class="b">Where does a $900M plan drift from the forecast and the actuals?</span></span>
+<span class="t">Power BI · DAX · Power Query · Python EDA<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/coke-sales-analysis/" data-label="Coca-Cola US Sales in Excel">
+<span class="n">04</span>
+<span><h3>Coca-Cola US Sales in Excel</h3><span class="b">Selling more is not the same as earning more.</span></span>
+<span class="t">Excel · SUMIFS · Dashboards<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/python-test-automation/" data-label="Python Test Automation Framework">
+<span class="n">05</span>
+<span><h3>Python Test Automation Framework</h3><span class="b">CAN tests that run, report and publish themselves on every push.</span></span>
+<span class="t">pytest · Allure · GitHub Actions · python-can<br>Mar 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/dsa-learning/" data-label="Python DSA Learning Log">
+<span class="n">06</span>
+<span><h3>Python DSA Learning Log</h3><span class="b">26 practice files and 9 interactive note pages, in public.</span></span>
+<span class="t">Python · Algorithms · Data structures<br>Mar to May 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+</div>
+</div>
+</section>
 
-        <section id="projects" class="py-16 md:py-24">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Project Showcase</h2>
-                <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Here are some of the projects where I've applied my prompt engineering and AI integration skills. Click to learn more.</p>
-            </div>
-            <div id="project-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            </div>
-        </section>
+<section class="sec sec--navy" data-says="He also explains <mark>science</mark> without a decoder ring." aria-labelledby="writing-h">
+<div class="wrap">
+<div class="list-head"><div><p class="eyebrow mono">Field notes &middot; UnFogIt</p><h2 id="writing-h">Wait, what?</h2>
+<p class="lede" style="margin-top:1em">UnFogIt breaks down the AI, science and tech research too dense for headlines.</p></div>
+<a class="pill" href="/writing/">All 12 notes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<div class="notes">
+<a class="note" href="https://unfogit.substack.com/p/the-lilliputian-molecule-how-dna" rel="external" target="_blank" data-reveal>
+<span><span class="d" style="margin:0 0 14px"><span>Biology</span><time datetime="2026-10-26">26 Oct 2026</time></span><h3>The Lilliputian Molecule</h3><p>How DNA Sequencing Solved a 90-Year-Old Mystery of Mushrooms That Make People See Tiny Humans</p></span>
+<span class="d"><span>Read on UnFogIt</span><span aria-hidden="true">&nearr;</span></span>
+</a>
+<a class="note" href="https://unfogit.substack.com/p/the-triple-engine-how-webb-caught" rel="external" target="_blank" data-reveal>
+<span><span class="d" style="margin:0 0 14px"><span>Space</span><time datetime="2026-10-26">26 Oct 2026</time></span><h3>The Triple Engine</h3><p>How Webb Caught Three Feeding Supermassive Black Holes Colliding in a Single Dawn-Era Galaxy</p></span>
+<span class="d"><span>Read on UnFogIt</span><span aria-hidden="true">&nearr;</span></span>
+</a>
+<a class="note" href="https://unfogit.substack.com/p/the-softmax-fix-how-googles-jonathan" rel="external" target="_blank" data-reveal>
+<span><span class="d" style="margin:0 0 14px"><span>AI</span><time datetime="2026-10-26">26 Oct 2026</time></span><h3>The Softmax Fix</h3><p>How Google&#x27;s Jonathan Barron Solved a Decade-Old Floating-Point Bug in Deep Learning&#x27;s Core Engine</p></span>
+<span class="d"><span>Read on UnFogIt</span><span aria-hidden="true">&nearr;</span></span>
+</a>
+<a class="note" href="https://unfogit.substack.com/p/the-magnetic-tapestry-how-sunrise" rel="external" target="_blank" data-reveal>
+<span><span class="d" style="margin:0 0 14px"><span>Space</span><time datetime="2026-10-25">25 Oct 2026</time></span><h3>The Magnetic Tapestry</h3><p>How Sunrise III&#x27;s Stratospheric Balloon Telescope Uncovered the Twisted 3D Web Powering the &quot;Quiet&quot; Sun</p></span>
+<span class="d"><span>Read on UnFogIt</span><span aria-hidden="true">&nearr;</span></span>
+</a>
+</div>
+</div>
+</section>
 
-    </main>
+<section class="sec sec--sheet sec--paper" data-says="A lab log keeps the dates honest." aria-labelledby="log-h">
+<div class="wrap">
+<div class="list-head"><div><p class="eyebrow mono">Lab log</p><h2 id="log-h">What I learned, and when</h2></div>
+<a class="pill" href="/lab-log/">Full log <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<ol class="log">
+<li data-k="built" data-reveal><div class="when mono"><time datetime="2026-10-26">26 Oct 2026</time><span class="kind">built</span></div><h3>MF4 Log Analytics goes public</h3><p>Open-sourced the pipeline and dashboard, with a synthetic demo recording so anyone can run it, plus an interactive workflow page. <a href="/work/mf4-log-analytics/">See more &rarr;</a></p></li>
+<li data-k="built" data-reveal><div class="when mono"><time datetime="2026-10-26">26 Oct 2026</time><span class="kind">built</span></div><h3>Global IT spend dashboard in Power BI</h3><p>Plan versus forecast versus actual on 93,729 rows, with DAX measures, Power Query prep and a Python EDA notebook. <a href="/work/it-expenditure-powerbi/">See more &rarr;</a></p></li>
+<li data-k="wrote" data-reveal><div class="when mono"><time datetime="2026-10-23">23 Oct 2026</time><span class="kind">wrote</span></div><h3>Twelve new UnFogIt explainers</h3><p>Between 23 and 26 October: dark energy, quantum error correction, plant biosensors and more. Each takes a paper too dense for headlines and says what it found, in plain words. <a href="/writing/">See more &rarr;</a></p></li>
+<li data-k="built" data-reveal><div class="when mono"><time datetime="2026-10-20">20 Oct 2026</time><span class="kind">built</span></div><h3>ChatGPT review analysis</h3><p>Sentiment and aspect analysis on 193,148 app reviews. Learned the hard way that star ratings and review text disagree more than you would expect. <a href="/work/chatgpt-review-analysis/">See more &rarr;</a></p></li>
+<li data-k="built" data-reveal><div class="when mono"><time datetime="2026-10-17">17 Oct 2026</time><span class="kind">built</span></div><h3>Coca-Cola sales dashboard in Excel</h3><p>SUMIFS, heatmaps and a dropdown explorer. The biggest market was not the most profitable one. <a href="/work/coke-sales-analysis/">See more &rarr;</a></p></li>
+<li data-k="learned" data-reveal><div class="when mono"><time datetime="2026-09-24">24 Sep 2026</time><span class="kind">learned</span></div><h3>Power BI and Tableau</h3><p>Crio.Do course completed.</p></li>
+</ol>
+</div>
+</section>
 
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-8 text-center">
-            <h3 class="text-2xl font-bold mb-2">Let's Connect</h3>
-            <p class="mb-4">I'm passionate about learning and collaborating on new AI challenges.</p>
-            <a href="mailto:anuj456nagar@gmail.com" class="text-emerald-400 hover:text-emerald-300 transition-colors text-lg">Anuj Nagar</a>
-            <div class="mt-6 flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/anuj-n-478690143/" target="_blank" class="hover:text-emerald-300 transition-colors">LinkedIn</a>
-                <a href="https://github.com/Anuj-Nagar-0910" target="_blank" class="hover:text-emerald-300 transition-colors">GitHub</a>
-            </div>
-        </div>
-    </footer>
+<section class="sec sec--paper" data-says="Plans, not promises. I like that." aria-labelledby="bench-h">
+<div class="wrap">
+<p class="eyebrow mono">On the bench</p>
+<h2 id="bench-h" style="margin-bottom:.5em">What I’m building next</h2>
+<div class="bench">
+<article class="card" data-reveal><span class="mono muted">In progress</span><h3 style="margin-top:.5em">Finish the Crio.Do DA-201 capstone</h3><p>The data analytics programme has one big project left. It goes on this site as entry 07 when it is done.</p></article>
+<article class="card dashed" data-reveal><span class="mono muted">Plan</span><h3 style="margin-top:.5em">A second analytics project on public telemetry data</h3><p>Same habits as the MF4 work (two methods, a clear verdict, honest caveats), but on data anyone can download and check.</p></article>
+<article class="card dashed" data-reveal><span class="mono muted">Plan</span><h3 style="margin-top:.5em">A chart in every UnFogIt piece</h3><p>Pull one number out of each paper and draw it, so a reader can see the claim as well as read it.</p></article>
+</div>
+<p class="muted" style="margin-top:22px;font-size:.95rem">Plans, not promises. Dashed cards are ideas; the solid one is already under way.</p>
+</div>
+</section>
 
-    <div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4 opacity-0 pointer-events-none modal-backdrop">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto transform scale-95 opacity-0 modal-content">
-            <div class="sticky top-0 bg-white p-6 border-b border-gray-200 flex justify-between items-center">
-                <h3 id="modal-title" class="text-2xl font-bold text-gray-800"></h3>
-                <button id="modal-close" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
-            </div>
-            <div class="p-6">
-                <p id="modal-description" class="text-gray-600 mb-6"></p>
-                <div class="mb-6">
-                    <h4 class="font-bold text-gray-700 mb-2">Technologies Used:</h4>
-                    <div id="modal-tech" class="flex flex-wrap gap-2"></div>
-                </div>
-                <a id="modal-link" href="#" target="_blank" class="inline-block bg-sky-700 text-white font-medium py-2 px-4 rounded-lg hover:bg-sky-800 transition-colors">View on GitHub</a>
-            </div>
-        </div>
-    </div>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
 
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const skillsData = {
-                labels: ['Prompt Engineering', 'LangChain', 'Ollama', 'Qdrant', 'N8n', 'Docker', 'System Architecture', 'Integration Testing'],
-                datasets: [{
-                    label: 'Confidence / Experience Level',
-                    data: [90, 85, 80, 75, 85, 70, 95, 90],
-                    backgroundColor: 'rgba(74, 124, 155, 0.7)', /* Muted blue with transparency */
-                    borderColor: 'rgba(74, 124, 155, 1)', /* Muted blue */
-                    borderWidth: 1,
-                    indexAxis: 'y',
-                }]
-            };
-
-            const skillsChartCtx = document.getElementById('skillsChart').getContext('2d');
-            new Chart(skillsChartCtx, {
-                type: 'bar',
-                data: skillsData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    indexAxis: 'y',
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.dataset.label || '';
-                                    if (label) { label += ': '; }
-                                    if (context.parsed.x !== null) { label += context.parsed.x + '%'; }
-                                    return label;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: { callback: value => value + "%" },
-                            grid: { color: '#e0e0e0' } /* Light grid lines */
-                        },
-                        y: {
-                            ticks: { font: { size: 14 } },
-                            grid: { color: '#e0e0e0' } /* Light grid lines */
-                        }
-                    }
-                }
-            });
-
-            const projects = [
-                {
-                    title: 'Interactive Medium Research Guide',
-                    description: 'Explore an interactive guide on conducting research for medium articles, focusing on effective information gathering and structuring for compelling content.',
-                    technologies: ['HTML', 'CSS', 'JavaScript'],
-                    link: 'interactive-medium-guide.html', // Link to your new HTML file
-                    type: 'page' // Mark this as a link to a separate page
-                },
-                {
-                    title: 'Jingle Research Guide',
-                    description: 'A comprehensive guide detailing the process of researching and developing effective jingles, from conceptualization to audience targeting.',
-                    technologies: ['HTML', 'CSS', 'JavaScript'],
-                    link: 'jingle-research-guide.html', // Link to your new HTML file
-                    type: 'page' // Mark this as a link to a separate page
-                },
-                {
-                    title: 'Prompt Engineering',
-                    description: 'A curated collection of prompt designs for AI applications across Code Generation, Creative Writing, Information Extraction, and Summarization. Each prompt is crafted for real-world use, balancing clarity with creativity.',
-                    technologies: ['md', 'AI Development' ],
-                    link: 'https://github.com/Anuj-Nagar-0910/awesome-prompts',
-                    type: 'modal' // Added type to differentiate
-                },
-                {
-                    title: 'LLM-Powered Data Extraction Pipeline',
-                    description: 'Developed an automated pipeline using LangChain and Ollama to extract structured data from unstructured daily usage logs, leveraging custom-engineered prompts for high accuracy. Integrated with Qdrant for efficient semantic search and retrieval of relevant information.',
-                    technologies: ['LangChain', 'Ollama', 'Qdrant', 'Prompt Engineering', 'Python', 'Docker'],
-                    link: 'https://github.com/Anuj-Nagar-0910/ollama-qdrant-demos',
-                    type: 'modal' // Added type
-                },
-                {
-                    title: 'N8n Workflow for Content Generation',
-                    description: 'Designed and implemented N8n workflows to automate the generation of marketing copy and summaries from raw data. The core of this project was fine-tuning prompts to ensure brand consistency, specific tones, and accurate output.',
-                    technologies: ['N8n', 'Prompt Engineering', 'LLM Integration', 'Automation'],
-                    link: 'https://github.com/Anuj-Nagar-0910/langchain-n8n-pipelines',
-                    type: 'modal' // Added type
-                }
-                
-            ];
-
-            const projectList = document.getElementById('project-list');
-            projects.forEach((project, index) => {
-                const card = document.createElement('div');
-                card.className = 'project-card bg-white p-6 rounded-lg shadow-sm border border-emerald-200 flex flex-col'; /* Secondary accent border */
-                card.innerHTML = `
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">${project.title}</h3>
-                    <p class="text-gray-600 flex-grow">${project.description.substring(0, 100)}...</p>
-                    <div class="mt-4">
-                        <button data-index="${index}" class="project-button font-medium text-sky-700 hover:text-sky-800 transition-colors">Learn More &rarr;</button>
-                    </div>
-                `;
-                projectList.appendChild(card);
-            });
-
-            const modal = document.getElementById('project-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalDescription = document.getElementById('modal-description');
-            const modalTech = document.getElementById('modal-tech');
-            const modalLink = document.getElementById('modal-link');
-            const modalClose = document.getElementById('modal-close');
-
-            projectList.addEventListener('click', (e) => {
-                if (e.target.classList.contains('project-button')) {
-                    const projectIndex = e.target.getAttribute('data-index');
-                    const project = projects[projectIndex];
-
-                    if (project.type === 'page') {
-                        // If it's a 'page' type, redirect to the linked HTML file
-                        window.location.href = project.link;
-                    } else {
-                        // Otherwise, open the modal as before
-                        modalTitle.textContent = project.title;
-                        modalDescription.textContent = project.description;
-                        modalLink.href = project.link;
-
-                        modalTech.innerHTML = '';
-                        project.technologies.forEach(tech => {
-                            const techTag = document.createElement('span');
-                            techTag.className = 'bg-emerald-100 text-emerald-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded'; /* Secondary accent tag */
-                            techTag.textContent = tech;
-                            modalTech.appendChild(techTag);
-                        });
-
-                        modal.classList.remove('opacity-0', 'pointer-events-none');
-                        modal.querySelector('.modal-content').classList.remove('scale-95', 'opacity-0');
-                    }
-                }
-            });
-
-            const closeModal = () => {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                modal.querySelector('.modal-content').classList.add('scale-95', 'opacity-0');
-            };
-
-            modalClose.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        });
-    </script>
+<div class="guide" id="guide" data-greet="Hi, I’m &lt;mark&gt;Sig&lt;/mark&gt;, the probe. Drag the slider, then scroll.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

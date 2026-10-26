@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MF4 Log Analytics: ECU Start-up Analysis in Python | Anuj Nagar</title>
+<meta name="description" content="A Python and pandas pipeline that reads MF4 (MDF4) recordings and checks every ECU power-up in minutes, not hours. Method, results and caveats.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/work/mf4-log-analytics/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="MF4 Log Analytics: ECU Start-up Analysis in Python | Anuj Nagar"><meta property="og:description" content="A Python and pandas pipeline that reads MF4 (MDF4) recordings and checks every ECU power-up in minutes, not hours. Method, results and caveats."><meta property="og:url" content="https://anuj-nagar-0910.github.io/work/mf4-log-analytics/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MF4 Log Analytics: ECU Start-up Analysis in Python | Anuj Nagar"><meta name="twitter:description" content="A Python and pandas pipeline that reads MF4 (MDF4) recordings and checks every ECU power-up in minutes, not hours. Method, results and caveats.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"SoftwareSourceCode","@id":"https://anuj-nagar-0910.github.io/work/mf4-log-analytics/#work","name":"MF4 Log Analytics","url":"https://anuj-nagar-0910.github.io/work/mf4-log-analytics/","description":"A Python and pandas pipeline that reads MF4 (MDF4) recordings and checks every ECU power-up in minutes, not hours. Method, results and caveats.","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"},"dateModified":"2026-10-26","inLanguage":"en","sameAs":["https://github.com/Anuj-Nagar-0910/mf4-log-analytics"],"codeRepository":"https://github.com/Anuj-Nagar-0910/mf4-log-analytics","programmingLanguage":"Python"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"},{"@type":"ListItem","position":2,"name":"Experiments","item":"https://anuj-nagar-0910.github.io/work/"},{"@type":"ListItem","position":3,"name":"MF4 Log Analytics","item":"https://anuj-nagar-0910.github.io/work/mf4-log-analytics/"}]}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="light" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/" aria-current="page">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="/#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="/#contact">Contact</a>
+</div>
+
+<main id="main">
+<section class="sec sec--navy case-hero" data-says="The flagship. Two clocks, &lt;mark&gt;one&lt;/mark&gt; truth." aria-labelledby="h1">
+<div class="wrap">
+<nav class="crumbs mono" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/work/">Experiments</a> / 01</nav>
+<p class="eyebrow mono">Experiment 01 &middot; flagship</p>
+<h1 id="h1">MF4 Log Analytics</h1>
+<p class="lede">Dual-path controllers are hard to inspect by hand: two processors, separate time bases, hundreds of power-ups per test campaign. This pipeline reads the recordings and answers, for every start-up, which path came first, by how many milliseconds, and why.</p>
+<div class="pills" style="margin-top:28px"><a class="pill pill--lg" href="https://anuj-nagar-0910.github.io/mf4-log-analytics/workflow.html" rel="external" target="_blank">Open the interactive workflow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910/mf4-log-analytics" rel="external" target="_blank">Source on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></div>
+<dl class="facts"><div><dt class="mono">Period</dt><dd>Built and published Oct 2026</dd></div><div><dt class="mono">Stack</dt><dd>Python, pandas, NumPy, asammdf, HTML/JS dashboard</dd></div><div><dt class="mono">Data</dt><dd>Synthetic demo recordings (no proprietary logs)</dd></div><div><dt class="mono">Licence</dt><dd>MIT, open source</dd></div></dl>
+</div>
+</section>
+<section class="sec sec--paper" aria-label="Case study">
+<div class="wrap">
+<div class="beats">
+<section class="beat" aria-labelledby="b-Q" data-reveal><div class="k"><b aria-hidden="true">Q</b><span class="mono">Question</span></div><div class="c"><h2 id="b-Q">Which processor starts first, and can I trust the timestamps?</h2>
+<p>In a dual-path controller, a master and a slave processor each keep their own clock. To check a start-up rule you scroll through timestamps in a measurement tool, correct for the clock offset in your head, and repeat that for every power-up in every file.</p>
+<p>A long-duration test campaign makes that expensive. My worked example: 10 recordings of about 4 GB each, with 57 to 60 start-ups per recording.</p>
+<ul class="kpis"><li><b>≈585</b><span>start-up cycles to check (570 to 600)</span></li><li><b>≈10 min</b><span>per cycle by hand (my estimate)</span></li><li><b>95–100 h</b><span>manual analysis, about 12 working days</span></li></ul>
+</div></section>
+<section class="beat" aria-labelledby="b-M" data-reveal><div class="k"><b aria-hidden="true">M</b><span class="mono">Method</span></div><div class="c"><h2 id="b-M">Find every power-up, correct the clocks, then check the answer a second way</h2>
+<ol>
+<li><b>Load.</b> Open large MF4 files lazily with <code>asammdf</code> and find the two path channel groups from their acquisition source.</li>
+<li><b>Segment.</b> Split the recording into power-ups by detecting init-flag falling edges, merged within one second.</li>
+<li><b>Measure.</b> Count resets per path, detect reboot data gaps, find each path's first application update.</li>
+<li><b>Correct.</b> Estimate the clock offset between the paths from matching inter-processor alive-counter pairs, with a linear fit to absorb drift.</li>
+<li><b>Cross-check.</b> Compute a second start difference from each path's own clock, which needs no offset estimate at all.</li>
+<li><b>Judge.</b> Combine both into a verdict (<code>PA_FIRST</code>, <code>SAME_FRAME</code>, <code>PB_BEFORE_PA</code>, <code>INCONCLUSIVE</code>) and a result (<code>OK</code>, <code>NOK</code>, <code>CHECK</code>, <code>INFO</code>).</li>
+<li><b>Report.</b> One CSV row per power-up (60 columns), plus a local browser dashboard with charts, a timeline view and filters.</li>
+</ol>
+<p><b>Why two methods?</b> The corrected difference depends on the offset estimate; the offset-free one does not. A violation is only reported when both agree, so false alarms from timestamp artefacts get filtered out.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-R" data-reveal><div class="k"><b aria-hidden="true">R</b><span class="mono">Result</span></div><div class="c"><h2 id="b-R">About 95 hours of checking becomes about 2.5 hours of unattended analysis</h2><ul class="kpis"><li><b>95 h → 2.5 h</b><span>estimated, per 10-recording campaign</span></li><li><b>≈39×</b><span>faster (97% less time)</span></li><li><b>≈15 s</b><span>per cycle, against about 10 min by hand</span></li></ul>
+<p>The bigger win is what the method catches. On the synthetic demo recording that ships with the repo, start-up #6 looks fine in the raw timestamps (+2.0 ms) but is a real violation once the 3.2 ms clock offset between the paths is removed.</p>
+<figure class="chart"><div role="img" aria-label="Bar chart of corrected start difference in milliseconds for seven synthetic power-ups. Start-up 6 is negative, minus 1.2 milliseconds, flagged NOK. The others are zero or positive."><svg viewBox="0 0 720 278" aria-hidden="true" focusable="false"><line class="axis" x1="287.5" x2="287.5" y1="12" y2="256" stroke-width="2"/><text x="150.0" y="272" text-anchor="middle" opacity=".7">-2</text><text x="287.5" y="272" text-anchor="middle" opacity=".7">0</text><text x="425.0" y="272" text-anchor="middle" opacity=".7">+2</text><text x="562.5" y="272" text-anchor="middle" opacity=".7">+4</text><text x="700.0" y="272" text-anchor="middle" opacity=".7">+6</text><text x="0" y="33">#1 clean start</text><rect class="bar-a" x="287.5" y="18" width="137.5" height="22" rx="3"/><text x="433.0" y="33" text-anchor="start">+2.0 ms OK</text><text x="0" y="67">#2 clean start</text><rect class="bar-a" x="287.5" y="52" width="55.0" height="22" rx="3"/><text x="350.5" y="67" text-anchor="start">+0.8 ms OK</text><text x="0" y="101">#3 same sample</text><rect class="bar-a" x="287.5" y="86" width="2.0" height="22" rx="3"/><text x="295.5" y="101" text-anchor="start">+0.0 ms OK</text><text x="0" y="135">#4 one reset</text><rect class="bar-a" x="287.5" y="120" width="82.5" height="22" rx="3"/><text x="378.0" y="135" text-anchor="start">+1.2 ms OK</text><text x="0" y="169">#5 resets on both</text><rect class="bar-a" x="287.5" y="154" width="41.2" height="22" rx="3"/><text x="336.8" y="169" text-anchor="start">+0.6 ms OK</text><text x="0" y="203">#6 path B first</text><rect class="bar-bad" x="205.0" y="188" width="82.5" height="22" rx="3"/><text x="197.0" y="203" text-anchor="end">-1.2 ms NOK</text><text x="0" y="237">#7 max resets</text><rect class="bar-c" x="287.5" y="222" width="343.8" height="22" rx="3"/><text x="639.2" y="237" text-anchor="start">+5.0 ms INFO</text></svg></div><figcaption>Corrected start difference (PB minus PA) for the 7 power-ups of the synthetic demo recording. Negative means path B started first. #6 is the violation the raw timestamps hid.</figcaption></figure>
+<p>Everything runs from the command line or a dependency-free local dashboard (a small Python <code>http.server</code> backend and one HTML/JS page, bound to localhost). Results are cached by file, settings, signal map and script hash, so reopening a file is instant.</p>
+</div></section>
+<section class="beat" aria-labelledby="b-C" data-reveal><div class="k"><b aria-hidden="true">C</b><span class="mono">Caveat</span></div><div class="c"><h2 id="b-C">What the numbers do and don’t say</h2>
+<ul>
+<li>The tool time was measured <b>once</b>, on a 3.4 GB recording (peak memory about 5.7 GB) while another analysis was running. Treat it as an upper bound.</li>
+<li>The manual time per cycle (about 10 minutes) is <b>my estimate</b>, not a benchmark. Recording time and the time spent deciding what to fix are not counted, because they are needed either way.</li>
+<li>The public repo uses a <b>synthetic</b> recording. Channel names are not hard-coded; a signal map file points the tool at real ones, and the real signal map stays out of git.</li>
+</ul>
+<p>The interactive workflow page lets you change those assumptions and see the estimate move.</p>
+</div></section>
+
+</div>
+<nav class="next-prev" aria-label="More experiments">
+<a href="/work/dsa-learning/" data-label="Python DSA Learning Log"><span class="mono muted">&larr; Previous</span><b>Python DSA Learning Log</b></a>
+<a href="/work/chatgpt-review-analysis/" data-label="ChatGPT Review Analysis"><span class="mono muted">Next &rarr;</span><b>ChatGPT Review Analysis</b></a>
+</nav>
+</div>
+</section>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
+
+<div class="guide" id="guide" data-greet="The flagship. Two clocks, &lt;mark&gt;one&lt;/mark&gt; truth.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Experiments: Data Analysis Projects by Anuj Nagar</title>
+<meta name="description" content="Six data analysis experiments in Python, Power BI, Excel and pytest, each with the question, the method, the result and the caveat. Plus a shelf of early sketches.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://anuj-nagar-0910.github.io/work/">
+<meta name="author" content="Anuj Nagar">
+<meta name="theme-color" content="#FF5A1F">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Anuj Nagar"><meta property="og:title" content="Experiments: Data Analysis Projects by Anuj Nagar"><meta property="og:description" content="Six data analysis experiments in Python, Power BI, Excel and pytest, each with the question, the method, the result and the caveat. Plus a shelf of early sketches."><meta property="og:url" content="https://anuj-nagar-0910.github.io/work/"><meta property="og:locale" content="en_IN">
+<meta property="og:image" content="https://anuj-nagar-0910.github.io/assets/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Anuj Nagar: data analysis and science writing">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Experiments: Data Analysis Projects by Anuj Nagar"><meta name="twitter:description" content="Six data analysis experiments in Python, Power BI, Excel and pytest, each with the question, the method, the result and the caveat. Plus a shelf of early sketches.">
+<link rel="me" href="https://github.com/Anuj-Nagar-0910"><link rel="me" href="https://www.linkedin.com/in/anuj-n-478690143/"><link rel="me" href="https://unfogit.substack.com/">
+<link rel="alternate" type="application/rss+xml" title="UnFogIt" href="https://unfogit.substack.com/feed">
+<script>(function(d){d.classList.add('js');try{var m=matchMedia('(prefers-reduced-motion: reduce)').matches,x=sessionStorage.getItem('xnav');if(x&&!m){d.classList.add('is-entering');d.setAttribute('data-l',JSON.parse(x).l||'')}var t=localStorage.getItem('theme');if(t)d.setAttribute('data-theme',t)}catch(e){}})(document.documentElement)</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://anuj-nagar-0910.github.io/#anuj","name":"Anuj Nagar","url":"https://anuj-nagar-0910.github.io/","sameAs":["https://github.com/Anuj-Nagar-0910","https://www.linkedin.com/in/anuj-n-478690143/","https://unfogit.substack.com/"],"description":"Data analyst who turns messy machine data into clear answers with Python, SQL and Power BI, and writes plain-language science explainers.","knowsAbout":["Data analysis","Python","pandas","Time-series analysis","Power BI","Excel","Sentiment analysis","Test automation","Science communication"]},{"@type":"WebSite","@id":"https://anuj-nagar-0910.github.io/#site","url":"https://anuj-nagar-0910.github.io/","name":"Anuj Nagar","inLanguage":"en","author":{"@id":"https://anuj-nagar-0910.github.io/#anuj"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anuj-nagar-0910.github.io/"},{"@type":"ListItem","position":2,"name":"Experiments","item":"https://anuj-nagar-0910.github.io/work/"}]},{"@type":"CollectionPage","name":"Experiments: Data Analysis Projects by Anuj Nagar","url":"https://anuj-nagar-0910.github.io/work/","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://anuj-nagar-0910.github.io/work/mf4-log-analytics/","name":"MF4 Log Analytics"},{"@type":"ListItem","position":2,"url":"https://anuj-nagar-0910.github.io/work/chatgpt-review-analysis/","name":"ChatGPT Review Analysis"},{"@type":"ListItem","position":3,"url":"https://anuj-nagar-0910.github.io/work/it-expenditure-powerbi/","name":"Global IT Spend in Power BI"},{"@type":"ListItem","position":4,"url":"https://anuj-nagar-0910.github.io/work/coke-sales-analysis/","name":"Coca-Cola US Sales in Excel"},{"@type":"ListItem","position":5,"url":"https://anuj-nagar-0910.github.io/work/python-test-automation/","name":"Python Test Automation Framework"},{"@type":"ListItem","position":6,"url":"https://anuj-nagar-0910.github.io/work/dsa-learning/","name":"Python DSA Learning Log"}]}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head" data-tone="light" data-solid-after>
+<div class="wrap">
+<a class="brand" href="/">Anuj Nagar<small>Data analysis &amp; science writing</small></a>
+<nav class="nav" aria-label="Main">
+<a class="pill hide-mobile" href="/work/" aria-current="page">Experiments</a><a class="pill hide-mobile" href="/writing/">Field notes</a><a class="pill hide-mobile" href="/lab-log/">Lab log</a>
+<a class="pill hide-mobile" href="/#contact" data-label="Contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+<button class="pill theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+<button class="pill only-mobile" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</nav>
+</div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+<button class="pill pill--ghost close" type="button">Close</button>
+<a href="/">Home</a><a href="/work/">Experiments</a><a href="/writing/">Field notes</a><a href="/lab-log/">Lab log</a><a href="/#contact">Contact</a>
+</div>
+
+<main id="main">
+<section class="sec sec--navy case-hero" data-says="Six entries. Every one has a <mark>caveat</mark> section." aria-labelledby="h1">
+<div class="wrap">
+<nav class="crumbs mono" aria-label="Breadcrumb"><a href="/">Home</a> / Experiments</nav>
+<h1 id="h1">All experiments</h1>
+<p class="lede">Each entry follows the same four beats: the question, the method, the result, and the caveat. The caveat is the part most portfolios leave out.</p>
+</div>
+</section>
+<section class="sec sec--paper" aria-label="Experiments">
+<div class="wrap"><h2 class="sr">The six experiments</h2><div class="rows">
+<a class="row" href="/work/mf4-log-analytics/" data-label="MF4 Log Analytics">
+<span class="n">01</span>
+<span><h3>MF4 Log Analytics</h3><span class="b">Which processor started first, and by how many milliseconds?</span></span>
+<span class="t">Python · pandas · NumPy · asammdf<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/chatgpt-review-analysis/" data-label="ChatGPT Review Analysis">
+<span class="n">02</span>
+<span><h3>ChatGPT Review Analysis</h3><span class="b">What do 193,148 app reviews actually say?</span></span>
+<span class="t">Python · TextBlob · NLP · Jupyter<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/it-expenditure-powerbi/" data-label="Global IT Spend in Power BI">
+<span class="n">03</span>
+<span><h3>Global IT Spend in Power BI</h3><span class="b">Where does a $900M plan drift from the forecast and the actuals?</span></span>
+<span class="t">Power BI · DAX · Power Query · Python EDA<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/coke-sales-analysis/" data-label="Coca-Cola US Sales in Excel">
+<span class="n">04</span>
+<span><h3>Coca-Cola US Sales in Excel</h3><span class="b">Selling more is not the same as earning more.</span></span>
+<span class="t">Excel · SUMIFS · Dashboards<br>Oct 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/python-test-automation/" data-label="Python Test Automation Framework">
+<span class="n">05</span>
+<span><h3>Python Test Automation Framework</h3><span class="b">CAN tests that run, report and publish themselves on every push.</span></span>
+<span class="t">pytest · Allure · GitHub Actions · python-can<br>Mar 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+<a class="row" href="/work/dsa-learning/" data-label="Python DSA Learning Log">
+<span class="n">06</span>
+<span><h3>Python DSA Learning Log</h3><span class="b">26 practice files and 9 interactive note pages, in public.</span></span>
+<span class="t">Python · Algorithms · Data structures<br>Mar to May 2026</span>
+<span class="go" aria-hidden="true">&rarr;</span>
+</a>
+</div></div>
+</section>
+<section class="sec sec--sheet sec--paper" id="sketches" data-says="The sketches shelf. Honest about what’s finished." aria-labelledby="sk-h">
+<div class="wrap">
+<p class="eyebrow mono">Sketches shelf</p>
+<h2 id="sk-h" style="margin-bottom:.4em">Where it started</h2>
+<p class="lede" style="margin-bottom:1.6em">Early experiments from July 2025. Some are working demos, some are little more than a README. I keep them because they show where I began, and I label them for what they are.</p>
+<div class="bench" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025</span><h3 style="margin-top:.5em;font-size:1.35rem">awesome-prompts</h3><p>A small curated set of prompts for code generation, creative writing, extraction and summarisation.</p><a href="https://github.com/Anuj-Nagar-0910/awesome-prompts" rel="external" target="_blank">Open repo &nearr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025</span><h3 style="margin-top:.5em;font-size:1.35rem">smart-dashboard-demos</h3><p>A D3.js dashboard with rolling live charts for warehouse temperature and humidity.</p><a href="https://github.com/Anuj-Nagar-0910/smart-dashboard-demos" rel="external" target="_blank">Open repo &nearr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025</span><h3 style="margin-top:.5em;font-size:1.35rem">study-tracker</h3><p>A single-page study tracker in plain HTML and JavaScript.</p><a href="https://github.com/Anuj-Nagar-0910/study-tracker" rel="external" target="_blank">Open repo &nearr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025</span><h3 style="margin-top:.5em;font-size:1.35rem">ollama-qdrant-demos</h3><p>Placeholder repo for a local-LLM plus vector-search idea. Early prototype, not a finished pipeline.</p><a href="https://github.com/Anuj-Nagar-0910/ollama-qdrant-demos" rel="external" target="_blank">Open repo &nearr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025</span><h3 style="margin-top:.5em;font-size:1.35rem">langchain-n8n-pipelines</h3><p>Placeholder repo for a LangChain and n8n document-to-questions idea. Early prototype, not a finished pipeline.</p><a href="https://github.com/Anuj-Nagar-0910/langchain-n8n-pipelines" rel="external" target="_blank">Open repo &nearr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025</span><h3 style="margin-top:.5em;font-size:1.35rem">Trending-Media-Dashboard</h3><p>An n8n automation idea for a trending-media dashboard. Early prototype.</p><a href="https://github.com/Anuj-Nagar-0910/Trending-Media-Dashboard" rel="external" target="_blank">Open repo &nearr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025 &middot; page</span><h3 style="margin-top:.5em;font-size:1.35rem">Interactive guide: an n8n Medium article agent</h3><p>An older standalone page from the first version of this site. Still online, still readable.</p><a href="/interactive-medium-guide.html" rel="external">Open the page &rarr;</a></article>
+<article class="card dashed" data-reveal><span class="mono muted">Jul 2025 &middot; page</span><h3 style="margin-top:.5em;font-size:1.35rem">Jingle research guide</h3><p>An older standalone page from the first version of this site. Still online, still readable.</p><a href="/jingle-research-guide.html" rel="external">Open the page &rarr;</a></article>
+</div>
+</div>
+</section>
+<section class="sec sec--accent contact" id="contact" data-says="Say hi. Copying the email is one click." aria-labelledby="contact-h">
+<div class="wrap">
+<p class="eyebrow mono">Contact</p>
+<h2 id="contact-h">Got a messy dataset or a science question?</h2>
+<p class="lede">I read everything and answer when I can. The quickest way is email, and LinkedIn works too.</p>
+<div class="pills" style="margin-top:28px">
+<span style="display:inline-flex;align-items:center;flex-wrap:wrap;gap:6px">
+<a class="pill pill--lg" href="mailto:anuj456nagar@gmail.com" data-email data-u="anuj456nagar" data-d="gmail.com">Copy my email</a><span class="toast" role="status" aria-live="polite"></span>
+</span>
+<a class="pill pill--lg pill--ghost" href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external" target="_blank">LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://github.com/Anuj-Nagar-0910" rel="me external" target="_blank">GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<a class="pill pill--lg pill--ghost" href="https://unfogit.substack.com/" rel="me external" target="_blank">UnFogIt <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+</div>
+<noscript><p>Email: anuj456nagar [at] gmail.com</p></noscript>
+</div>
+</section>
+
+</main>
+<footer class="foot">
+<div class="wrap">
+<p style="margin:0">&copy; 2026 Anuj Nagar. Built by hand with HTML, CSS and a little JavaScript. No trackers, no cookies.</p>
+<ul>
+<li><a href="https://github.com/Anuj-Nagar-0910" rel="me external">GitHub</a></li>
+<li><a href="https://www.linkedin.com/in/anuj-n-478690143/" rel="me external">LinkedIn</a></li>
+<li><a href="https://unfogit.substack.com/" rel="me external">UnFogIt</a></li>
+<li><a href="/lab-log/">Lab log</a></li>
+</ul>
+</div>
+</footer>
+
+<div class="guide" id="guide" data-greet="Six entries. Every one has a &lt;mark&gt;caveat&lt;/mark&gt; section.">
+<canvas id="sig" width="48" height="48" aria-hidden="true"></canvas>
+<div class="bubble" id="bubble" aria-hidden="true"></div>
+</div>
+<button class="guide-toggle" id="guide-toggle" type="button" aria-pressed="false" title="Hide the guide" aria-label="Show or hide the guide character">Sig</button>
+<div class="curtain" aria-hidden="true"><i class="a"></i><i class="b"></i><span></span></div>
+<script>(function(){var s=document.querySelector('.curtain span'),l=document.documentElement.getAttribute('data-l');if(s&&l)s.textContent=l})()</script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
